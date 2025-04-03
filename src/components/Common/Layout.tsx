@@ -17,14 +17,16 @@ const Layout = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 `
 
 const Content = styled.div`
-  flex-grow: 1;
-  overflow: auto;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `
 
 export default Layout

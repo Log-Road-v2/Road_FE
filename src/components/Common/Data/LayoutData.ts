@@ -46,10 +46,6 @@ const SiteInfo: SiteInfoType[] = [
     id: 3,
     content: "dsm.log@dsm.hs.kr ",
   },
-  {
-    id: 4,
-    content: "소셜미디어링크",
-  },
 ]
 
 export { NavigationListData, SiteInfo }

@@ -20,12 +20,14 @@ const Header = () => {
 }
 
 const Container = styled.header`
+  position: fixed;
   width: 100vw;
   height: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${Color.gray200};
+  background-color: ${Color.white};
 `
 
 const DesktopContainer = styled.div<{
