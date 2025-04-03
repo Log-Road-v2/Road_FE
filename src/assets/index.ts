@@ -1,7 +1,6 @@
 export * from "./Add"
 export * from "./Archive"
 export * from "./Arrow"
-export * from "./Book"
 export * from "./Bookmark"
 export * from "./Check"
 export * from "./Document"
