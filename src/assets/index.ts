@@ -31,3 +31,9 @@ export * from "./Writer"
 export * from "./X"
 export * from "./Logo"
 export * from "./Move"
+
+import MainImage1 from "../assets/Png/MainImage1.png";
+import MainImage2 from "../assets/Png/MainImage2.png";
+import MainImage3 from "../assets/Png/MainImage3.png";
+
+export const Images = { MainImage1, MainImage2, MainImage3 };
