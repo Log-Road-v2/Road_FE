@@ -5,6 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "types": ["@emotion/react"]
+    "types": ["@emotion/react"],
+    "jsx": "react"
   }
 }
