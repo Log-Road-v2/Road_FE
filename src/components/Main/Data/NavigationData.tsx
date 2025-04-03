@@ -5,23 +5,29 @@ const ShortcutData: ShortcutDataType[] = [
   {
     id: 1,
     title: "DSM의 다양한 프로젝트 보러가기",
-    description: "아카이브에 다양한 프로젝트를 모으고 있어요 DSM 학생들의 다양한 프로젝트를 보고 싶다면 더보기 버튼을 눌러주세요",
+    description: "아카이브에 다양한 프로젝트를 모으고 있어요\nDSM 학생들의 다양한 프로젝트를 보고 싶다면 더보기 버튼을 눌러주세요",
     href: "",
-    icon: <FolderIcon />
+    icon: <FolderIcon size={32} />,
+    positionX: 15,
+    positionY: 0
   },
   {
     id: 2,
     title: "최신 랭킹 보러가기",
-    description: "최근 열린 대회의 랭킹들을 보고 싶다면 더보기를 클릭해주세요 과연 어떤 프로젝트들이 시상했을까요?",
+    description: "최근 열린 대회의 랭킹들을 보고 싶다면 더보기를 클릭해주세요\n과연 어떤 프로젝트들이 시상했을까요?",
     href: "",
-    icon: <TrophyIcon />
+    icon: <TrophyIcon size={32} />,
+    positionX: 35,
+    positionY: 17
   },
   {
     id: 3,
     title: "프로젝트 업로드 하러가기",
-    description: "지금 프로젝트를 업로드해보세요 다른 사람들과 공유하고 자신의 프로젝트를 저장해보세요",
+    description: "지금 프로젝트를 업로드해보세요\n다른 사람들과 공유하고 자신의 프로젝트를 저장해보세요",
     href: "",
-    icon: <LaptopIcon />
+    icon: <LaptopIcon size={32} />,
+    positionX: 55,
+    positionY: 7
   }
 ];
 
