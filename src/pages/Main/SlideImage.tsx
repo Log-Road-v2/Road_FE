@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import * as S from "./style"
 import { Play, Move } from "../../assets"
 import { Color } from "../../styles"
@@ -6,6 +6,7 @@ import { SlideImageData } from "../../components/Main/Data/NavigationData"
 
 const SlideImage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [isImageSlide, setIsImageSlide] = useState<boolean>(true);
 
   const handlePrev = () => {
     setCurrentPage((prev) => (prev === 0 ? SlideImageData.length - 1 : prev - 1));
@@ -14,6 +15,21 @@ const SlideImage = () => {
   const handleNext = () => {
     setCurrentPage((prev) => (prev === SlideImageData.length - 1 ? 0 : prev + 1));
   };
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+
+    if (isImageSlide) {
+      interval = setInterval(() => {
+        setCurrentPage((prev) => (prev === SlideImageData.length - 1 ? 0 : prev + 1));
+      }, 5000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isImageSlide]);
+
 
   return (
     <S.SlideContainer backgroundImage={SlideImageData[currentPage].image}>
@@ -27,7 +43,13 @@ const SlideImage = () => {
 
         <S.PaginationController>
           <Move size={12} color={Color.gray200} rotate="left" onClick={handlePrev} />
-          <Play size={12} color={Color.gray200} />
+          <S.PlayBackWrapper onClick={() => setIsImageSlide(!isImageSlide)} >
+            {isImageSlide ?
+              <Play size={16} color={Color.gray200} /> :
+              <Move size={16} color={Color.gray200} rotate="right" />
+            }
+          </S.PlayBackWrapper>
+
           <Move size={12} color={Color.gray200} rotate="right" onClick={handleNext} />
         </S.PaginationController>
       </S.SlideNavigation>
