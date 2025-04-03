@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { Logo } from '../../../assets'
 import Navigation from './Navigation'
 import LoginNav from './LoginNav'
+import { Logo } from '../../../assets'
 import { Color } from '../../../styles'
 
 const Header = () => {
