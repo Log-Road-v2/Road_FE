@@ -3,30 +3,69 @@ import { Color, Font } from '../../styles'
 
 // 메인 스타일
 
-export const Container = styled.div``
-
-export const DisplayWrapper = styled.main`
+export const Container = styled.div`
   display: flex;
-
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  padding: 120px 0 0;
 `
 
-export const Section = styled.section``
+export const DisplayWrapper = styled.main`
+  width: 1180px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+`
 
-export const SectionHeadLine = styled.p``
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 0;
+`
 
-export const IntroductionWrapper = styled.div``
+export const SectionHeadLine = styled.p`
+  color: ${Color.gray300};
+  ${Font.medium14}
+`
 
-export const Title = styled.p``
+export const Title = styled.h1`
+  text-align: center;
+  white-space: pre-line;
+  color: ${Color.white};
+  ${Font.medium24}
+`
 
-export const SubTitle = styled.p``
+export const SectionTitle = styled.h1`
+  ${Font.semi28}
+`
 
-export const ActionWrapper = styled.div``
+export const SubTitle = styled.h6`
+  color: ${Color.gray500};
+  ${Font.medium20}
+`
 
-export const TextWrapper = styled.div``
+export const ActionWrapper = styled.div`
+  position: relative;
+  border-radius: 24px 24px 0 0;
+  background-color: ${Color.blue800};
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%); 
+`
 
-export const ActionHeadLine = styled.p``
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 96px 0;
+`
 
-export const AccessMassageWrapper = styled.nav``
+export const ActionHeadLine = styled.b`
+  color: ${Color.gray200};
+  ${Font.regular14}
+`
 
 // 슬라이드 스타일
 
@@ -67,6 +106,7 @@ export const ImageSubTitle = styled.h6`
 
 export const SlideNavigation = styled.div`
   display: flex;
+  align-items: center;
   gap: 12px;
 `
 
@@ -85,4 +125,8 @@ export const PaginationController = styled.div`
   background-color: ${Color.gray800};
 `
 
+export const PlayBackWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
 
