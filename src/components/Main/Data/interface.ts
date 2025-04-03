@@ -5,7 +5,9 @@ export interface ShortcutDataType {
   title: string;
   description: string;
   href: string;
-  icon : ReactNode
+  icon : ReactNode;
+  positionX: number;
+  positionY: number
 }
 
 export interface NavigationListDataType {

@@ -38,7 +38,7 @@ const NavArticle = styled.div`
     background-color: ${Color.blue100};
     
     p {
-      color: ${Color.blue300};
+      color: ${Color.blue500};
     }
 
     svg {
