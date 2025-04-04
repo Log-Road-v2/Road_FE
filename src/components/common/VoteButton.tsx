@@ -6,9 +6,9 @@ type VoteButtonType = {
   isDisabled: boolean;
 };
 
-export const VoteButton = ({ isVote }: VoteButtonType) => {
+export const VoteButton = ({ isVote, isDisabled }: VoteButtonType) => {
   return (
-    <Container isVote={false} isDisabled={false}>
+    <Container isVote={isVote} isDisabled={isDisabled}>
       {isVote ? "선택" : "투표하기"}
     </Container>
   );
@@ -25,7 +25,7 @@ const Container = styled.button`
       : isDisabled
       ? Color.gray300
       : Color.gray200};
-  color: ${({ isDisabled }) => (isDisabled ? Color.gray200 : Color.gray400)};
+  color: ${({ isVote }) => (isVote ? Color.gray200 : Color.gray400)};
   font: ${Font.regular12};
   border: none;
   border-radius: 8px;
