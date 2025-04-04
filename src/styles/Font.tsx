@@ -4,7 +4,7 @@ const fontGenerator = (
   lineHeight: number,
 ) => ({
   fontWeight: `${weight}`,
-  fontSize: `${size}px`,
+  fontSize: `${size / 16}rem`,
   lineHeight: `${lineHeight}%`,
   fontFamily: `'Pretendard', sans-serif`
 });
@@ -15,6 +15,7 @@ const Font = {
   bold16: fontGenerator(700, 16, 140),
   bold14: fontGenerator(700, 14, 140),
   bold12: fontGenerator(700, 12, 140),
+  semi28: fontGenerator(600, 28, 160),
   semi24: fontGenerator(600, 24, 160),
   semi20: fontGenerator(600, 20, 160),
   semi16: fontGenerator(600, 16, 140),
