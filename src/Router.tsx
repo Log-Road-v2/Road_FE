@@ -6,10 +6,10 @@ function Router() {
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path="" element={<></>}></Route>
+        <Route path="/" element={<></>}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default Router
+export default Router;
