@@ -6,7 +6,7 @@ interface PropsType {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const ConfirmRoundButton = ({ text, onClick }: PropsType) => {
+const RoundButton = ({ text, onClick }: PropsType) => {
   return (
     <Button onClick={onClick}>{text}</Button>
   )
@@ -24,4 +24,4 @@ const Button = styled.button`
   ${Font.semi14}
 `
 
-export default ConfirmRoundButton;
+export default RoundButton;
