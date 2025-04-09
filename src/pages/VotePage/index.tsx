@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Arrow } from "../../assets";
 import { Project } from "../../components/Project";
-import CommonTag from "../../components/Tag/CommonTag";
-import { ContestButton } from "../../components/common/ContestButton";
+import CommonTag from "../../components/Common/Tag/CommonTag";
+import { ContestButton } from "../../components/Common/Button/ContestButton";
 import * as S from "./style";
-import { Pagination } from "../../components/common/Pagination";
+import { Pagination } from "../../components/Common/Pagination";
 
 const dummyProjects = new Array(130).fill(null); // 테스트용 30개 프로젝트
 

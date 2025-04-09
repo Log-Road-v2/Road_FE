@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Color, Font } from "../../styles";
+import { Color, Font } from "../../../styles";
 
 export const AuthorButton = ({ isTeam }: { isTeam: boolean }) => {
   return <Container>{isTeam ? "팀" : "개인"}</Container>;

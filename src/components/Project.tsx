@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { AuthorButton } from "./common/AuthorButton";
-import { VoteButton } from "./common/VoteButton";
+import { AuthorButton } from "./Common/Button/AuthorButton";
+import { VoteButton } from "./Common/Button/VoteButton";
 import ProjectEx from "../assets/ProjectEx.png";
 import { Color, Font } from "../styles";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Color, Font } from "../../styles";
+import { Color, Font } from "../../../styles";
 
 type VoteButtonType = {
   isVote: boolean;
