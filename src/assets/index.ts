@@ -37,3 +37,6 @@ import MainImage2 from "../assets/Png/MainImage2.png";
 import MainImage3 from "../assets/Png/MainImage3.png";
 
 export const Images = { MainImage1, MainImage2, MainImage3 };
+
+import WriteImage from "../assets/Png/WriteImage.png";
+export default WriteImage
