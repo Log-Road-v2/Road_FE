@@ -4,25 +4,29 @@ import { Color, Font } from "../../../styles";
 
 const MAX_LENGTH = 100;
 
-const TextArea = () => {
-  const [text, setText] = useState("");
+interface PropsType {
+  value: string,
+  placeholder: string,
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
 
-  const isError = text.length > MAX_LENGTH;
-
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
-  };
+const TextArea = ({
+  value,
+  placeholder = "",
+  onChange
+}: PropsType) => {
+  const isError = value.length > MAX_LENGTH;
 
   return (
     <Wrapper>
       <TextareaBox isError={isError}>
         <StyledTextArea
-          placeholder="간단한 내용을 입력해주세요"
-          value={text}
-          onChange={handleChange}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
         <CharCount isError={isError}>
-          {`${text.length} / ${MAX_LENGTH}`}
+          {`${value.length} / ${MAX_LENGTH}`}
         </CharCount>
       </TextareaBox>
     </Wrapper>
