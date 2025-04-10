@@ -38,12 +38,14 @@ const Input = ({ val, setVal, describe }: PropsType) => {
             <Arrow size={20} color={Color.gray300} />
         }
       </InputWrapper>
-      <CalendarWrapper>
-        <Calendar>
-          <Calendar.Header />
-          <Calendar.Body />
-        </Calendar>
-      </CalendarWrapper>
+      {isOpen &&
+        <CalendarWrapper>
+          <Calendar>
+            <Calendar.Header />
+            <Calendar.Body />
+          </Calendar>
+        </CalendarWrapper>
+      }
     </Container>
   );
 };

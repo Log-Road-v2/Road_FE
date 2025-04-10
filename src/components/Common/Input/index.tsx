@@ -64,7 +64,7 @@ const InputBox = styled.input<{
 `
 
 const ErrorText = styled.p`
-color: ${Color.red500};
+  color: ${Color.red500};
   ${Font.regular14}
 `
 

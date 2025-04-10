@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "@emotion/styled"
-import ConfirmRoundButton from "../Button/ConfirmRoundButton"
+import ConfirmRoundButton from "../Button/RoundButton"
 import { Color, Font } from "../../../styles"
 
 const LoginNav = () => {
