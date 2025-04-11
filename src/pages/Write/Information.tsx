@@ -6,13 +6,18 @@ import CalendarInput from "../../components/Write/Calendar/Input";
 import Student from "./Input/Student";
 import Skill from "./Input/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
-import { format } from "date-fns";
 
 interface PropsType {
   label: string;
   required?: boolean;
   children: React.ReactNode;
 }
+
+const dateInputs = [
+  { key: "startDate", label: "시작일을 입력해주세요" },
+  { key: "endDate", label: "종료일을 입력해주세요" },
+] as const;
+
 const FormSection = ({ label, required = false, children }: PropsType) => (
   <S.InfoSection>
     <S.TextBox>
@@ -80,16 +85,14 @@ const Information = () => {
 
       <FormSection label="프로젝트 진행일자" required>
         <S.ContentWrapper>
-          <CalendarInput
-            val={info.startDate}
-            setVal={(val) => setInfo({ startDate: val })}
-            describe="시작일을 입력해주세요"
-          />
-          <CalendarInput
-            val={info.endDate}
-            setVal={(val) => setInfo({ endDate: val })}
-            describe="종료일을 입력해주세요"
-          />
+          {dateInputs.map(({ key, label }) => (
+            <CalendarInput
+              key={key}
+              val={info[key]}
+              setVal={(val) => setInfo({ [key]: val })}
+              describe={label}
+            />
+          ))}
         </S.ContentWrapper>
       </FormSection>
 

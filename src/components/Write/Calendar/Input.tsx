@@ -5,7 +5,7 @@ import { Color, Font } from "../../../styles"
 import Calendar from "./index";
 
 interface PropsType {
-  val: Date;
+  val: Date | null;
   setVal: (val: Date) => void;
   describe: string;
 }
@@ -14,39 +14,36 @@ const Input = ({ val, setVal, describe }: PropsType) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const toggleOpen = () => {
-    setIsOpen((prev) => !prev);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target as Node)) {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const formattedDate = (val instanceof Date && !isNaN(val.getTime()))
+    ? val.toLocaleDateString("sv-SE")
+    : describe;
+
   return (
-    <Container ref={ref} onClick={toggleOpen}>
+    <Container ref={ref} onClick={() => setIsOpen(prev => !prev)}>
       <InputWrapper>
-        <Describe>
-          {val instanceof Date && !isNaN(val.getTime())
-            ? val.toLocaleDateString("sv-SE")
-            : describe}
-        </Describe>
-        {
-          isOpen ?
-            <Arrow size={20} color={Color.gray300} rotate="bottom" /> :
-            <Arrow size={20} color={Color.gray300} />
-        }
+        <Describe>{formattedDate}</Describe>
+        <Arrow size={20} color={Color.gray300} rotate={isOpen ? "bottom" : undefined} />
       </InputWrapper>
+
       {isOpen &&
-        <CalendarWrapper>
-          <Calendar>
+        <CalendarWrapper onClick={(e) => e.stopPropagation()}>
+          <Calendar setVal={(date) => {
+            setVal(date);
+            setIsOpen(false);
+          }}>
             <Calendar.Header />
-            <Calendar.Body />
+            <Calendar.Body setVal={setVal} />
           </Calendar>
         </CalendarWrapper>
       }

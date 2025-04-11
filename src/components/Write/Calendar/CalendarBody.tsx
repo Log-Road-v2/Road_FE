@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import useCalendarContext from "./useCalendarContext";
 import { Color, Font } from "../../../styles";
 
-const CalendarBody = () => {
+const CalendarBody = ({ setVal }: { setVal: (val: Date) => void }) => {
   const weeks = ["S", "M", "T", "W", "T", "F", "S"];
   const { daysInMonth, selectedDate, currentDate } = useCalendarContext();
 
@@ -17,18 +17,29 @@ const CalendarBody = () => {
         ))}
       </DayWrapper>
       <DayWrapper>
-        {daysInMonth.map((date) => (
-          <Day
-            onClick={() => selectedDate.selectDate(date.date)}
-            $isCurrentMonth={currentDate.month === date.month}
-            $isSelectedDate={selectedDate.date === date.date}
-            $isSunday={date.dayIndexOfWeek === 0}
-            $isSaturday={date.dayIndexOfWeek === 6}
-            key={date.date}
-          >
-            <span>{date.day}</span>
-          </Day>
-        ))}
+        {daysInMonth.map((date) => {
+          const selected = new Date(
+            Number(date.year),
+            Number(date.month) - 1,
+            Number(date.day)
+          );
+          selected.setHours(0, 0, 0, 0);
+          return (
+            <Day
+              key={date.date}
+              onClick={() => {
+                selectedDate.selectDate(date.date);
+                setVal(selected);
+              }}
+              $isCurrentMonth={currentDate.month === date.month}
+              $isSelectedDate={selectedDate.date === date.date}
+              $isSunday={date.dayIndexOfWeek === 0}
+              $isSaturday={date.dayIndexOfWeek === 6}
+            >
+              <span>{date.day}</span>
+            </Day>
+          );
+        })}
       </DayWrapper>
     </Container>
   );

@@ -6,7 +6,7 @@ import CalendarHeader from "./CalendarHeader";
 import CalendarBody from "./CalendarBody";
 import useCalendar from "../../../hooks/useCalendar"
 
-const CalendarRoot = ({ children }: { children: ReactNode }) => {
+const CalendarRoot = ({ setVal, children }: { setVal: (val: Date) => void; children: React.ReactNode }) => {
   const calendar = useCalendar();
   return (
     <CalendarContext.Provider value={calendar}>
