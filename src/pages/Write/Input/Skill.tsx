@@ -1,18 +1,31 @@
-import styled from "@emotion/styled";
+import * as S from "./style"
 import Input from "../../../components/Common/Input";
-import { Color, Font } from "../../../styles";
+import { Color } from "../../../styles";
 import ClosableTag from "../../../components/Common/Tag/ClosableTag";
-import { useState } from "react";
 import { Add } from "../../../assets";
+import { useWriteStore } from "../../../stores/useWriteStore";
+import { useState } from "react";
 
 const Skill = () => {
-  const [inputValue, setInputValue] = useState("")
+  const { info, setInfo } = useWriteStore();
+  const [inputValue, setInputValue] = useState("");
 
-  const handleRegister = () => { }
+  const handleAddSkill = () => {
+    const trimmed = inputValue.trim();
+    if (!trimmed) return;
+    if (info.skills.includes(trimmed)) return;
+
+    setInfo({ skills: [...info.skills, trimmed] });
+    setInputValue("");
+  };
+
+  const handleRemoveSkill = (skillToRemove: string) => {
+    setInfo({ skills: info.skills.filter(skill => skill !== skillToRemove) });
+  };
 
   return (
-    <Container>
-      <InputRow>
+    <S.Container>
+      <S.InputRow>
         <Input
           value={inputValue}
           placeholder="기술스택을 입력해주세요"
@@ -20,45 +33,19 @@ const Skill = () => {
           error=""
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <AddButton onClick={handleRegister}>
+        <S.AddButton onClick={handleAddSkill}>
           <Add color={Color.white} />
-        </AddButton>
-      </InputRow>
+        </S.AddButton>
+      </S.InputRow>
 
-      <TagWrapper>
-        <ClosableTag text="기술" />
-      </TagWrapper>
+      <S.TagWrapper>
+        {info.skills.map((skill, idx) => (
+          <ClosableTag key={idx} text={skill} onClose={() => handleRemoveSkill(skill)} />
+        ))}
+      </S.TagWrapper>
 
-    </Container>
+    </S.Container>
   )
 }
-
-const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`
-
-const InputRow = styled.div`
-  display: flex;
-  gap: 12px;
-`
-
-const AddButton = styled.button`
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background-color: ${Color.gray800};
-  border: none;
-  cursor: pointer;
-`
-
-const TagWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`
 
 export default Skill

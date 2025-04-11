@@ -6,7 +6,6 @@ import CalendarInput from "../../components/Write/Calendar/Input";
 import Student from "./Input/Student";
 import Skill from "./Input/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
-import { useState } from "react";
 
 interface PropsType {
   label: string;
@@ -27,10 +26,9 @@ const Information = () => {
   const options = [1, 2, 3]
   const { info, setInfo } = useWriteStore();
 
-  const [selected, setSelected] = useState<"개인" | "팀" | null>(null)
-
   return (
     <S.InformationContainer>
+      <pre>{JSON.stringify(info, null, 2)}</pre>
       <S.Line />
 
       <FormSection label="업로드 대회" required>
@@ -44,28 +42,38 @@ const Information = () => {
 
       <FormSection label="규모" required>
         <S.ContentWrapper>
-          <S.Tag selected={selected === "개인"}>개인</S.Tag>
-          <S.Tag selected={selected === "팀"}>팀</S.Tag>
+          <S.Tag
+            selected={info.authorCategory === 'PERSONAL'}
+            onClick={() => setInfo({ authorCategory: 'PERSONAL' })}
+          >
+            개인
+          </S.Tag>
+          <S.Tag
+            selected={info.authorCategory === 'TEAM'}
+            onClick={() => setInfo({ authorCategory: 'TEAM' })}
+          >
+            팀
+          </S.Tag>
         </S.ContentWrapper>
       </FormSection>
 
       <FormSection label="그룹명">
         <Input
           value={info.teamName}
-          placeholder="팀명 또는 동아리명을 작성해주세요"
+          placeholder="팀명 또는 동아리명을 입력해주세요"
           label=""
-          error=""
+          error="팀명을 작성해주세요"
           onChange={(e) => setInfo({ teamName: e.target.value })}
         />
       </FormSection>
 
       <FormSection label="제목" required>
         <Input
-          value=""
+          value={info.projectName}
           placeholder="제목을 입력해주세요"
           label=""
-          error=""
-          onChange={() => { }}
+          error="제목을 작성해주세요"
+          onChange={(e) => setInfo({ projectName: e.target.value })}
         />
       </FormSection>
 
@@ -73,12 +81,12 @@ const Information = () => {
         <S.ContentWrapper>
           <CalendarInput
             val={info.startDate}
-            setVal={() => setInfo({ startDate: val })}
+            setVal={(val) => setInfo({ startDate: val })}
             describe="시작 일자를 선택해주세요"
           />
           <CalendarInput
             val={info.endDate}
-            setVal={() => setInfo({ endDate: val })}
+            setVal={(val) => setInfo({ endDate: val })}
             describe="종료 일자를 선택해주세요"
           />
         </S.ContentWrapper>
@@ -96,27 +104,30 @@ const Information = () => {
         <TextArea
           value={info.description}
           placeholder="간단한 설명을 입력해주세요"
-          onChange={(e) => setInfo(e.target.value)}
+          onChange={(e) => setInfo({ description: e.target.value })}
         />
       </FormSection>
 
-      <FormSection label="간단한 설명" required>
+      <FormSection label="시연영상" required>
         <Input
-          value=""
+          value={info.vedio}
           placeholder="시연영상 링크를 입력해주세요"
           label=""
           error=""
-          onChange={() => { }}
+          onChange={(e) => setInfo({ vedio: e.target.value })}
         />
       </FormSection>
 
       <FormSection label="이미지" required>
         <Input
-          value=""
-          placeholder="프로젝트 대표 이미지를 넣어주세요"
-          label=""
-          error=""
-          onChange={() => { }}
+          type="file"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const imageUrl = URL.createObjectURL(file);
+              setInfo({ image: imageUrl });
+            }
+          }}
         />
       </FormSection>
     </S.InformationContainer>

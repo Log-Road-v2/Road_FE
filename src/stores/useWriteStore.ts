@@ -5,7 +5,7 @@ type AuthorCategory = 'PERSONAL' | 'TEAM';
 interface InfoData {
   contestId: number;
   projectName: string;
-  authorCategory: AuthorCategory;
+  authorCategory: AuthorCategory | null;
   teamName: string;
   skills: string[];
   introduction: string;
@@ -25,7 +25,7 @@ interface WriteStoreType {
 const initialInfo: InfoData = {
   contestId: 0,
   projectName: '',
-  authorCategory: 'PERSONAL',
+  authorCategory: null,
   teamName: '',
   skills: [],
   introduction: '',

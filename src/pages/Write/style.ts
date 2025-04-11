@@ -79,7 +79,7 @@ export const Tag = styled.div<{
   padding: 12px 24px;
   border-radius: 8px;
   border: 1px solid ${({ selected }) => selected ? Color.blue300 : Color.gray300};
-  color: ${Color.gray400};
+  color: ${({ selected }) => selected ? Color.blue300 : Color.gray400};
   ${Font.regular14}
 `
 
