@@ -64,6 +64,18 @@ const InputBox = styled.input<{
   &:focus {
     border: 1px solid ${Color.gray400};
   }
+
+  &[type="file"] {
+    color: ${Color.gray700};
+    
+    &::file-selector-button {
+      display: none;
+    }
+
+    &::-webkit-file-upload-button {
+      display: none;
+    }
+  }
 `
 
 const ErrorText = styled.p`
