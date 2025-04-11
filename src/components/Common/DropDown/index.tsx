@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 
 interface PropsType<T> {
   val: T | undefined;
-  setVal: React.Dispatch<React.SetStateAction<T | undefined>>;
+  setVal: (val: T) => void;
   describe: string;
   items: T[];
   width?: string;
