@@ -3,18 +3,20 @@ import styled from "@emotion/styled";
 import { Font, Color } from "../../../styles"
 
 interface PropsType {
-  value: string,
-  placeholder: string,
-  label: string,
-  error: string,
+  value?: string,
+  type?: string;
+  placeholder?: string,
+  label?: string,
+  error?: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
   value,
-  placeholder = "",
-  label,
-  error,
+  type = "text",
+  placeholder = "입력해주세요",
+  label = "",
+  error = "에러가 발생하였습니다",
   onChange,
   ...props
 }: PropsType) => {
@@ -24,7 +26,8 @@ const Input = ({
     <InputContainer>
       {label && <Label>{label}</Label>}
       <InputBox
-        value={value}
+        type={type}
+        value={type === "file" ? undefined : value}
         placeholder={placeholder}
         max={9999}
         min={1000}
