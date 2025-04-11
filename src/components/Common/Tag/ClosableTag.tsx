@@ -4,13 +4,14 @@ import { X } from "../../../assets/X"
 
 interface PropsType {
   text?: string
+  onClose?: () => void
 }
 
-const ClosableTag = ({ text }: PropsType) => {
+const ClosableTag = ({ text, onClose }: PropsType) => {
   return (
     <Container>
       <InnerText>{text}</InnerText>
-      <X size={16} color={Color.blue500} />
+      <X size={16} color={Color.blue500} onClick={onClose} />
     </Container>
   )
 }
@@ -24,7 +25,7 @@ const Container = styled.div`
   border-radius: 20px;
 `
 
-const InnerText = styled.p`
+const InnerText = styled.span`
   color: ${Color.blue500};
   ${Font.semi12}
 `
