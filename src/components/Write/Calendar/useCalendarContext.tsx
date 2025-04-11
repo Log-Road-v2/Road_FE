@@ -5,6 +5,7 @@ interface DateInfo {
   month: string;
   day: string;
 }
+
 interface CalendarContextType {
   currentDate: DateInfo;
   daysInMonth: (DateInfo & { date: string; dayIndexOfWeek: number })[];

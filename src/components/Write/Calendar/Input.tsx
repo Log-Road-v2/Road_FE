@@ -51,6 +51,8 @@ const Input = ({ val, setVal, describe }: PropsType) => {
 };
 
 const Container = styled.div`
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -74,11 +76,18 @@ const Describe = styled.p`
 `
 
 const CalendarWrapper = styled.div`
+  position: absolute;
+  top: 52px;
+  left: 0;
   width: 100%;
-  padding: 12px 16px;
+  padding: 16px 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
-  background-color: ${Color.white};
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 32px 12px rgb(27, 116, 198, 0.1);
+  z-index: 10;
 `
 
 export default Input

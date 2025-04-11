@@ -46,7 +46,7 @@ const Line = styled.hr`
   width: 100%;
   height: 1px;
   border: none;
-  background-color: ${Color.gray200};
+  background-color: ${Color.gray100};
 `
 
 const DayWrapper = styled.div`
@@ -67,9 +67,9 @@ const Day = styled.div<{
   $isSunday: boolean;
   $isSaturday: boolean
 }>`
-  padding: 12px;
+  width: 100%;
+  aspect-ratio: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
