@@ -1,6 +1,5 @@
 import * as S from "./style"
 import Input from "../../../components/Common/Input";
-import { Color } from "../../../styles";
 import ClosableTag from "../../../components/Common/Tag/ClosableTag";
 import { Add } from "../../../assets";
 import { useWriteStore } from "../../../stores/useWriteStore";
@@ -25,18 +24,19 @@ const Skill = () => {
 
   return (
     <S.Container>
-      <S.InputRow>
-        <Input
-          value={inputValue}
-          placeholder="기술스택을 입력해주세요"
-          label=""
-          error=""
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <S.AddButton onClick={handleAddSkill}>
-          <Add color={Color.white} />
-        </S.AddButton>
-      </S.InputRow>
+      <Input
+        value={inputValue}
+        placeholder="기술스택을 입력해주세요"
+        label=""
+        error=""
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleAddSkill();
+          }
+        }}
+      />
 
       <S.TagWrapper>
         {info.skills.map((skill, idx) => (

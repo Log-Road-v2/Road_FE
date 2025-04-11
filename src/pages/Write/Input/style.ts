@@ -9,21 +9,6 @@ export const Container = styled.div`
   position: relative;
 `
 
-export const InputRow = styled.div`
-  display: flex;
-  gap: 12px;
-`
-
-export const AddButton = styled.button`
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background-color: ${Color.gray800};
-  border: none;
-  cursor: pointer;
-`
-
 export const TagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

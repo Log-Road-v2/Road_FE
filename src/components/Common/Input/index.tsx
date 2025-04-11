@@ -31,8 +31,6 @@ const Input = ({
         type={type}
         value={type === "file" ? undefined : value}
         placeholder={placeholder}
-        max={9999}
-        min={1000}
         {...props}
         onChange={onChange}
         onKeyDown={onKeyDown}

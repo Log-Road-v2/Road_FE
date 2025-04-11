@@ -2,12 +2,17 @@ import { create } from 'zustand'
 
 type AuthorCategory = 'PERSONAL' | 'TEAM';
 
+interface Member {
+  studentId: number;
+}
+
 interface InfoData {
   contestId: number;
   projectName: string;
   authorCategory: AuthorCategory | null;
   teamName: string;
   skills: string[];
+  members: Member[];
   introduction: string;
   description: string;
   startDate: Date | null;
@@ -28,6 +33,7 @@ const initialInfo: InfoData = {
   authorCategory: null,
   teamName: '',
   skills: [],
+  members: [],
   introduction: '',
   description: '',
   startDate: null,
