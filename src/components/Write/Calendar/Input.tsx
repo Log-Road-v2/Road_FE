@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { Arrow } from "../../../assets";
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Color, Font } from "../../../styles"
 import Calendar from "./index";
 
 interface PropsType {
-  val: Date | null;
-  setVal: (val: Date) => void;
+  val: string | null;
+  setVal: (val: string) => void;
   describe: string;
 }
 
@@ -14,20 +14,24 @@ const Input = ({ val, setVal, describe }: PropsType) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (e: MouseEvent) => {
+  const formattedDate = val ?? describe;
+
+  const handleClickOutside = useCallback((e: MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target as Node)) {
       setIsOpen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [handleClickOutside]);
 
-  const formattedDate = (val instanceof Date && !isNaN(val.getTime()))
-    ? val.toLocaleDateString("sv-SE")
-    : describe;
+  const handleDateSelect = (date: Date) => {
+    const formatted = date.toLocaleDateString("sv-SE");
+    setVal(formatted);
+    setIsOpen(false);
+  };
 
   return (
     <Container ref={ref} onClick={() => setIsOpen(prev => !prev)}>
@@ -38,12 +42,9 @@ const Input = ({ val, setVal, describe }: PropsType) => {
 
       {isOpen &&
         <CalendarWrapper onClick={(e) => e.stopPropagation()}>
-          <Calendar setVal={(date) => {
-            setVal(date);
-            setIsOpen(false);
-          }}>
+          <Calendar>
             <Calendar.Header />
-            <Calendar.Body setVal={setVal} />
+            <Calendar.Body setVal={handleDateSelect} />
           </Calendar>
         </CalendarWrapper>
       }

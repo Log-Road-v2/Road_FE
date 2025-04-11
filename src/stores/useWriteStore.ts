@@ -15,8 +15,8 @@ interface InfoData {
   members: Member[];
   introduction: string;
   description: string;
-  startDate: Date | null;
-  endDate: Date | null;
+  startDate: string | null;
+  endDate: string | null;
   image: string;
   vedio: string;
 }
