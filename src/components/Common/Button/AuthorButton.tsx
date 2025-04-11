@@ -9,7 +9,7 @@ const Container = styled.button`
   width: 53px;
   height: 21px;
   background-color: ${Color.gray800};
-  font-size: ${Font.medium12};
+  ${Font.medium12};
   color: ${Color.gray200};
   border: none;
   border-radius: 4px;

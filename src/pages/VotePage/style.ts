@@ -3,7 +3,7 @@ import { Color, Font } from "../../styles";
 
 export const Container = styled.div`
   width: 1180px;
-  margin: 0 auto;
+  margin: 100px 0px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
-  font: ${Font.bold32};
+  ${Font.bold32};
   color: ${Color.gray800};
 `;
 
@@ -37,10 +37,10 @@ export const ContestInfo = styled.div`
 
 export const Date = styled.div`
   > p {
-    font: ${Font.medium16};
+    ${Font.medium16};
     color: ${Color.black};
   }
-  font: ${Font.medium16};
+  ${Font.medium16};
   color: ${Color.gray500};
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ export const AwardList = styled.div`
   display: flex;
   align-items: center;
   gap: 6%;
-  font: ${Font.medium16};
+  ${Font.medium16};
   color: ${Color.black};
 `;
 
@@ -79,7 +79,7 @@ export const PageButton = styled.button<{ isActive: boolean }>`
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
-  font: ${Font.medium16};
+  ${Font.medium16};
   background-color: ${({ isActive }) =>
     isActive ? Color.blue800 : Color.white};
   color: ${({ isActive }) => (isActive ? Color.gray200 : Color.gray600)};

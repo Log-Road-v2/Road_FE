@@ -26,7 +26,7 @@ const Container = styled.button`
       ? Color.gray300
       : Color.gray200};
   color: ${({ isVote }) => (isVote ? Color.gray200 : Color.gray400)};
-  font: ${Font.regular12};
+  ${Font.regular12};
   border: none;
   border-radius: 8px;
 `;

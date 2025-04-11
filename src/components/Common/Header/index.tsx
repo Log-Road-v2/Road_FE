@@ -1,11 +1,10 @@
-import styled from '@emotion/styled'
-import Navigation from './Navigation'
-import LoginNav from './LoginNav'
-import { Logo } from '../../../assets'
-import { Color } from '../../../styles'
+import styled from "@emotion/styled";
+import Navigation from "./Navigation";
+import LoginNav from "./LoginNav";
+import { Logo } from "../../../assets";
+import { Color } from "../../../styles";
 
 const Header = () => {
-
   return (
     <Container>
       <DesktopContainer width={58}>
@@ -16,8 +15,8 @@ const Header = () => {
         <LoginNav />
       </DesktopContainer>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.header`
   position: fixed;
@@ -28,19 +27,21 @@ const Container = styled.header`
   align-items: center;
   border-bottom: 1px solid ${Color.gray200};
   background-color: ${Color.white};
-`
+  z-index: 100000;
+`;
 
 const DesktopContainer = styled.div<{
-  width?: number
+  width?: number;
 }>`
   width: ${({ width }) => `${width ?? 10}vw`};
   display: flex;
   align-items: center;
   gap: 72px;
-  
+  background-color: ${Color.white};
+
   @media screen and (max-width: 768px) {
     display: none;
   }
-`
+`;
 
-export default Header
+export default Header;

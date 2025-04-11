@@ -16,7 +16,7 @@ const Container = styled.button<{ isVote: boolean }>`
   height: 46px;
   background-color: ${({ isVote }) => (isVote ? Color.gray200 : Color.blue500)};
   color: ${({ isVote }) => (isVote ? Color.gray400 : Color.white)};
-  font: ${Font.semi16};
+  ${Font.semi16};
   border: none;
   border-radius: 8px;
 `;

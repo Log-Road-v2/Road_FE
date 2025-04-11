@@ -38,7 +38,7 @@ const PageButton = styled.button<{ isActive: boolean }>`
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
-  font: ${Font.medium16};
+  ${Font.medium16};
   background-color: ${({ isActive }) =>
     isActive ? Color.blue800 : Color.white};
   color: ${({ isActive }) => (isActive ? Color.gray200 : Color.gray600)};

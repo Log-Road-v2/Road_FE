@@ -71,12 +71,12 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.p`
-  font: ${Font.bold16};
+  ${Font.bold16};
   color: ${Color.black};
 `;
 
 const Content = styled.p`
-  font: ${Font.medium12};
+  ${Font.medium12};
   color: ${Color.gray300};
 `;
 
