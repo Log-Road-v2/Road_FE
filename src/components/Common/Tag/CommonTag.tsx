@@ -1,9 +1,13 @@
 import styled from "@emotion/styled/macro";
 import { Font, Color } from "../../../styles";
 
-const CommonTag = () => {
+interface PropsType {
+  text?: string
+}
+
+const CommonTag = ({text} : PropsType) => {
   return (
-    <Tag>태그</Tag>
+    <Tag>{text}</Tag>
   )
 }
 
@@ -13,7 +17,7 @@ const Tag = styled.div`
   border: 1px solid ${Color.blue300};
   background-color: ${Color.white};
   color: ${Color.blue300};
-  ${Font.medium14}
+  ${Font.medium16}
 `
 
 export default CommonTag
