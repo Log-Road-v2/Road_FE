@@ -9,6 +9,7 @@ interface PropsType {
   label?: string,
   error?: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -18,6 +19,7 @@ const Input = ({
   label = "",
   error = "에러가 발생하였습니다",
   onChange,
+  onKeyDown,
   ...props
 }: PropsType) => {
   const [isError, setIsError] = useState<boolean>(false);
@@ -33,6 +35,7 @@ const Input = ({
         min={1000}
         {...props}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
 
       {isError && error && <ErrorText>{error}</ErrorText>}
