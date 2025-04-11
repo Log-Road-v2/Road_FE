@@ -6,6 +6,7 @@ import CalendarInput from "../../components/Write/Calendar/Input";
 import Student from "./Input/Student";
 import Skill from "./Input/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
+import { format } from "date-fns";
 
 interface PropsType {
   label: string;
@@ -82,12 +83,12 @@ const Information = () => {
           <CalendarInput
             val={info.startDate}
             setVal={(val) => setInfo({ startDate: val })}
-            describe="시작 일자를 선택해주세요"
+            describe="시작일을 입력해주세요"
           />
           <CalendarInput
             val={info.endDate}
             setVal={(val) => setInfo({ endDate: val })}
-            describe="종료 일자를 선택해주세요"
+            describe="종료일을 입력해주세요"
           />
         </S.ContentWrapper>
       </FormSection>

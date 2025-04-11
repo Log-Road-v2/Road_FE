@@ -10,8 +10,8 @@ interface InfoData {
   skills: string[];
   introduction: string;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | null;
+  endDate: Date | null;
   image: string;
   vedio: string;
 }
@@ -30,8 +30,8 @@ const initialInfo: InfoData = {
   skills: [],
   introduction: '',
   description: '',
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: null,
+  endDate: null,
   image: '',
   vedio: ''
 };

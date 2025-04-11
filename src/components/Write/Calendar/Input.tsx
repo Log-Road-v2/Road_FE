@@ -6,7 +6,7 @@ import Calendar from "./index";
 
 interface PropsType {
   val: Date;
-  setVal: React.Dispatch<React.SetStateAction<Date>>;
+  setVal: (val: Date) => void;
   describe: string;
 }
 
@@ -29,9 +29,13 @@ const Input = ({ val, setVal, describe }: PropsType) => {
   }, []);
 
   return (
-    <Container>
-      <InputWrapper ref={ref} onClick={toggleOpen}>
-        <Describe>{val ? String(val) : describe}</Describe>
+    <Container ref={ref} onClick={toggleOpen}>
+      <InputWrapper>
+        <Describe>
+          {val instanceof Date && !isNaN(val.getTime())
+            ? val.toLocaleDateString("sv-SE")
+            : describe}
+        </Describe>
         {
           isOpen ?
             <Arrow size={20} color={Color.gray300} rotate="bottom" /> :
