@@ -1,6 +1,8 @@
 import * as S from "./style";
 import { ReactNode } from "react";
 import SkillTag from "../../components/Common/Tag/CommonTag";
+import { useWriteStore } from "../../stores/useWriteStore";
+import MarkDownPreview from "./MarkDownPreview"
 
 interface PropsType {
   title?: string;
@@ -15,14 +17,16 @@ const MetaItem = ({ title, children }: PropsType) => (
 );
 
 const Preview = () => {
+  const { info } = useWriteStore();
+
   return (
     <S.InformationContainer>
       <S.OverviewSection>
         <S.TitleWrapper>
-          <S.Title>프로젝트명</S.Title>
+          <S.Title>{info.projectName}</S.Title>
         </S.TitleWrapper>
         <S.ProjectInfo>
-          로드는 학교의 프로젝트를 저장하고 투표 기능을 제공하는 서비스입니다. 대마고 유일한 플랫폼 야호 로드는 학교의 프로젝트를 저장하고 투표 기능을 제공하는 서비스입니다. 대마고 유일한 플랫폼 야호 서비스입니다. 대마고 유일한 플랫폼 야호
+          {info.introduction}
         </S.ProjectInfo>
         <S.PreviewImage />
       </S.OverviewSection>
@@ -30,24 +34,28 @@ const Preview = () => {
       <S.MetaInfoSection>
         <MetaItem title="프로젝트 유형">
           <S.TeamList>
-            <S.MetaText>동아리</S.MetaText>
-            <S.MetaText>Log</S.MetaText>
+            <S.MetaText>{info.authorCategory}</S.MetaText>
+            <S.MetaText>{info.teamName}</S.MetaText>
           </S.TeamList>
         </MetaItem>
 
         <MetaItem title="구성원">
           <S.TeamList>
-            <S.MetaText>임다영</S.MetaText>
+            {info.members.map((value, index) => (
+              <S.MetaText key={index}>{value.studentId}</S.MetaText>
+            ))}
           </S.TeamList>
         </MetaItem>
 
         <MetaItem title="진행일자">
-          <S.MetaText>2024년 5월 12일 ~ 2024년 5월 24일</S.MetaText>
+          <S.MetaText>{`${info.startDate} ~ ${info.endDate}`}</S.MetaText>
         </MetaItem>
 
         <MetaItem title="기술 스택">
           <S.TechStackList>
-            {/* <SkillTag /> */}
+            {/* {info.skills.map((value, index) => (
+              <SkillTag key={index} text={value} />
+            ))} */}
           </S.TechStackList>
         </MetaItem>
       </S.MetaInfoSection>
@@ -56,7 +64,7 @@ const Preview = () => {
         <S.Title>프로젝트 설명</S.Title>
       </S.TitleWrapper>
 
-      <S.ProjectDetails></S.ProjectDetails>
+      <MarkDownPreview markdown={info.description} />
 
       <S.VideoSection></S.VideoSection>
     </S.InformationContainer>
