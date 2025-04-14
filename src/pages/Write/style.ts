@@ -179,3 +179,7 @@ export const VideoSection = styled.div`
   height: 370px;
   background-color: ${Color.gray300};
 `
+
+export const Content = styled.div`
+  width: 100%;
+`

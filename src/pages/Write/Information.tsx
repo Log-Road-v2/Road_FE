@@ -106,9 +106,9 @@ const Information = () => {
 
       <FormSection label="간단한 설명" required>
         <TextArea
-          value={info.description}
+          value={info.introduction}
           placeholder="간단한 설명을 입력해주세요"
-          onChange={(e) => setInfo({ description: e.target.value })}
+          onChange={(e) => setInfo({ introduction: e.target.value })}
         />
       </FormSection>
 

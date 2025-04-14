@@ -1,7 +1,6 @@
 import * as S from "./style"
 import Input from "../../../components/Common/Input";
 import ClosableTag from "../../../components/Common/Tag/ClosableTag";
-import { Add } from "../../../assets";
 import { useWriteStore } from "../../../stores/useWriteStore";
 import { useState } from "react";
 
