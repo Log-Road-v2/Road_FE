@@ -4,6 +4,7 @@ import Layout from "./components/Common/Layout";
 import Main from "./pages/Main";
 import Write from "./pages/Write"
 import Archive from "./pages/Archive";
+import MyPage from "./pages/MyPage";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
           <Route path="/main" element={<Main />}></Route>
           <Route path="/write" element={<Write />}></Route>
           <Route path="/archive" element={<Archive />}></Route>
+          <Route path="/mypage" element={<MyPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
