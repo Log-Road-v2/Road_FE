@@ -31,7 +31,7 @@ const Font = {
   regular14: fontGenerator(400, 14, 140),
   regular12: fontGenerator(400, 12, 140),
   content: fontGenerator(500, 16, 220),
-  subContent: fontGenerator(500, 16, 180),
+  subContent: fontGenerator(400, 16, 180),
 }
 
 export default Font;
