@@ -18,6 +18,7 @@ export const ArchiveHeader = styled.div`
 export const ContestNameDateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const SelectContest = styled.div`

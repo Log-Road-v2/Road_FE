@@ -1,6 +1,7 @@
 import * as S from "./style"
 import { Arrow } from "../../assets"
 import Search from "../../components/Common/Search"
+import NoPage from "../../components/Common/NoPage"
 
 const Archive = () => {
   return (
@@ -20,12 +21,18 @@ const Archive = () => {
         <S.ProjectWrapper>
           <S.SearchWrapper>
             <S.SearchTotal>전체 10건</S.SearchTotal>
-            <Search />
+            <Search
+              value=""
+              onChange={() => { }}
+              onSearch={() => { }}
+            />
           </S.SearchWrapper>
 
           <S.ProjectCardList>
-            <S.ProjectCard></S.ProjectCard>
+            {/* <S.ProjectCard></S.ProjectCard> */}
+            <NoPage />
           </S.ProjectCardList>
+
         </S.ProjectWrapper>
       </S.Content>
     </S.Container>
