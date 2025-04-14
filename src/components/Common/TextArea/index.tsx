@@ -7,12 +7,14 @@ const MAX_LENGTH = 100;
 interface PropsType {
   value: string,
   placeholder: string,
+  height?: string,
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextArea = ({
   value,
   placeholder = "",
+  height = "100px",
   onChange
 }: PropsType) => {
   const isError = value.length > MAX_LENGTH;
@@ -23,6 +25,7 @@ const TextArea = ({
         <StyledTextArea
           placeholder={placeholder}
           value={value}
+          height={height}
           onChange={onChange}
         />
         <CharCount isError={isError}>
@@ -55,9 +58,11 @@ const TextareaBox = styled.div<ErrorProps>`
   }
 `;
 
-const StyledTextArea = styled.textarea`
+const StyledTextArea = styled.textarea<{
+  height?: string
+}>`
   width: 100%;
-  height: 108px;
+  height: ${({ height }) => height};
   padding: 12px 20px;
   resize: none;
   border: none;

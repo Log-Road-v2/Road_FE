@@ -1,7 +1,11 @@
+import { useWriteStore } from "../../stores/useWriteStore"
+import MarkDownPreview from "./MarkDownPreview"
 import * as S from "./style"
 import TextArea from "../../components/Common/TextArea"
 
 const Details = () => {
+  const { info, setInfo } = useWriteStore()
+
   return (
     <S.InformationContainer>
       <S.TextBox>
@@ -10,9 +14,21 @@ const Details = () => {
       </S.TextBox>
 
       <S.Line />
-      {/* <TextArea /> */}
+      <TextArea
+        value={info.description}
+        height="1000px"
+        onChange={(e) =>
+          setInfo({
+            ...info,
+            description: e.target.value,
+          })
+        }
+        placeholder="마크다운을 입력하세요"
+      />
       <S.Line />
-    </S.InformationContainer>
+
+      <MarkDownPreview markdown={info.description}></MarkDownPreview>
+    </S.InformationContainer >
   )
 }
 
