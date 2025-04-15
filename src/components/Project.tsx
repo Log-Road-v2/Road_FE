@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AuthorButton } from "./Common/Button/AuthorButton";
+import { AuthorTag } from "./Common/Tag/AuthorTag";
 import { VoteButton } from "./Common/Button/VoteButton";
 import ProjectEx from "../assets/ProjectEx.png";
 import { Color, Font } from "../styles";
@@ -22,7 +22,7 @@ export const Project = () => {
           한줄소개내용임니다람쥐한줄소개내용임니다람쥐한줄소개내용임니다람쥐
         </Content>
         <ButtonWrapper>
-          <AuthorButton isTeam={true} />
+          <AuthorTag isTeam={true} />
           <VoteButton isVote={false} isDisabled={false} />
         </ButtonWrapper>
       </Wrapper>
