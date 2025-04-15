@@ -31,7 +31,7 @@ const Container = styled.header`
 `;
 
 const DesktopContainer = styled.div<{
-  width?: number;
+  width?: number
 }>`
   width: ${({ width }) => `${width ?? 10}vw`};
   display: flex;

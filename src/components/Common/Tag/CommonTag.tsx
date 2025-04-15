@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 import { Color, Font } from "../../../styles";
 
-const CommonTag = () => {
-  return <Tag>태그</Tag>;
-};
+interface PropsType {
+  text?: string
+}
+
+const CommonTag = ({text} : PropsType) => {
+  return (
+    <Tag>{text}</Tag>
+  )
+}
 
 const Tag = styled.div`
   display: flex;
