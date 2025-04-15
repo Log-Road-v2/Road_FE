@@ -29,11 +29,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   height: 200px;
   border: 1px solid ${Color.gray300};
   background-color: ${Color.white};
-  margin-top: 200px;
   padding-left: 36px;
   border-radius: 8px;
   overflow: hidden;

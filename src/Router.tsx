@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import { VotePage } from "./pages/VotePage";
 import Write from "./pages/Write";
 import Archive from "./pages/Archive";
+import { RankingPage } from "./pages/Ranking";
 function Router() {
   return (
     <BrowserRouter>
@@ -12,9 +13,10 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/main" element={<Main />} />
-          <Route path="/Vote" element={<VotePage />} />
+          <Route path="/vote" element={<VotePage />} />
           <Route path="/write" element={<Write />} />
           <Route path="/archive" element={<Archive />} />
+          <Route path="/ranking" element={<RankingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
