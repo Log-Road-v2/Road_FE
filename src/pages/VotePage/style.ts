@@ -13,6 +13,19 @@ export const Container = styled.div`
 export const Title = styled.p`
   ${Font.bold32};
   color: ${Color.gray800};
+  cursor: pointer;
+`;
+
+export const TitleBox = styled.div`
+  position: relative;
+`;
+
+export const ModalWrapper = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  margin-top: 8px;
 `;
 
 export const TitleWrapper = styled.div`

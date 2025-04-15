@@ -5,10 +5,12 @@ import CommonTag from "../../components/Common/Tag/CommonTag";
 import { ContestButton } from "../../components/Common/Button/ContestButton";
 import * as S from "./style";
 import { Pagination } from "../../components/Common/Pagination";
+import { ContestListModal } from "../../components/Common/Modal/ContestListModal";
 
 const dummyProjects = new Array(130).fill(null); // 테스트용 30개 프로젝트
 
 export const VotePage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 20;
   const totalPages = Math.ceil(dummyProjects.length / projectsPerPage);
@@ -20,10 +22,17 @@ export const VotePage = () => {
   return (
     <S.Container>
       <S.TitleWrapper>
-        <S.Title>
-          2024 교내 해커톤
-          <Arrow />
-        </S.Title>
+        <S.TitleBox>
+          <S.Title onClick={() => setIsOpen((prev) => !prev)}>
+            2024 교내 해커톤
+            <Arrow />
+          </S.Title>
+          {isOpen && (
+            <S.ModalWrapper>
+              <ContestListModal />
+            </S.ModalWrapper>
+          )}
+        </S.TitleBox>
         <ContestButton isVote={true} />
       </S.TitleWrapper>
       <S.ContestInfo>
