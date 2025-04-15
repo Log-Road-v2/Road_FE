@@ -3,11 +3,14 @@ import { Color, Font } from "../../../styles";
 
 type ContestButtonType = {
   isVote: boolean;
+  onClick: () => void;
 };
 
-export const ContestButton = ({ isVote }: ContestButtonType) => {
+export const ContestButton = ({ isVote, onClick }: ContestButtonType) => {
   return (
-    <Container isVote={isVote}>{isVote ? "투표취소" : "투표완료"}</Container>
+    <Container isVote={isVote} onClick={onClick}>
+      {isVote ? "투표취소" : "투표완료"}
+    </Container>
   );
 };
 

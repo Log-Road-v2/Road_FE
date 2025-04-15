@@ -27,7 +27,7 @@ const Container = styled.header`
   align-items: center;
   border-bottom: 1px solid ${Color.gray200};
   background-color: ${Color.white};
-  z-index: 100000;
+  z-index: 100;
 `;
 
 const DesktopContainer = styled.div<{

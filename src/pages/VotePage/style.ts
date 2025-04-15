@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import { Color, Font } from "../../styles";
 
 export const Container = styled.div`
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   margin: 100px 0px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  padding: 0 16px;
 `;
 
 export const Title = styled.p`
@@ -29,7 +31,8 @@ export const ModalWrapper = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,7 +45,8 @@ export const ContestInfo = styled.div`
   justify-content: center;
   gap: 24px;
   padding: 0 32px;
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   height: 146px;
   border-radius: 8px;
   box-shadow: 0px 4px 20px rgba(179, 180, 184, 0.2);
@@ -103,4 +107,10 @@ export const PageButton = styled.button<{ isActive: boolean }>`
     background-color: ${Color.gray200};
     color: ${Color.gray600};
   }
+
+  &:focus-visible {
+    outline: 2px solid ${Color.blue500};
+    outline-offset: 2px;
+
+}
 `;

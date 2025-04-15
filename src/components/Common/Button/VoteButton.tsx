@@ -8,7 +8,12 @@ type VoteButtonType = {
 
 export const VoteButton = ({ isVote, isDisabled }: VoteButtonType) => {
   return (
-    <Container isVote={isVote} isDisabled={isDisabled}>
+    <Container
+      isVote={isVote}
+      isDisabled={isDisabled}
+      disabled={isDisabled}
+      aria-label={isVote ? "선택됨" : "투표하기"}
+    >
       {isVote ? "선택" : "투표하기"}
     </Container>
   );

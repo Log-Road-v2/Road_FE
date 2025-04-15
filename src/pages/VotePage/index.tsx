@@ -12,6 +12,7 @@ const dummyProjects = new Array(130).fill(null); // 테스트용 30개 프로젝
 export const VotePage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isVoted, setIsVoted] = useState(false);
   const projectsPerPage = 20;
   const totalPages = Math.ceil(dummyProjects.length / projectsPerPage);
 
@@ -33,7 +34,10 @@ export const VotePage = () => {
             </S.ModalWrapper>
           )}
         </S.TitleBox>
-        <ContestButton isVote={true} />
+        <ContestButton
+          isVote={isVoted}
+          onClick={() => setIsVoted((prev) => !prev)}
+        />
       </S.TitleWrapper>
       <S.ContestInfo>
         <S.Date>
