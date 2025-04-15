@@ -38,5 +38,8 @@ import MainImage3 from "../assets/Png/MainImage3.png";
 
 export const Images = { MainImage1, MainImage2, MainImage3 };
 
+export * from "./ProjectEx.png";
+export * from "./ProjectCheck";
+
 import WriteImage from "../assets/Png/WriteImage.png";
 export default WriteImage
