@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { Logo } from "../../assets";
-import { Color, Font } from "../../styles";
-import { AuthorButton } from "../../components/Common/Button/AuthorButton";
-import SubmitButton from "../../components/Common/Button/SubmitButton";
+import { Logo } from "../../../assets";
+import { Color, Font } from "../../../styles";
+import { AuthorButton } from "../../../components/Common/Button/AuthorButton";
+import SubmitButton from "../../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../assets/Png/AuthBackground.png";
 
 export const Role = () => {

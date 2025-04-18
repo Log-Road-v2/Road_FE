@@ -1,15 +1,26 @@
 import styled from "@emotion/styled";
-import { Logo } from "../../assets";
-import { Color, Font } from "../../styles";
-import SubmitButton from "../../components/Common/Button/SubmitButton";
+import { Logo } from "../../../assets";
+import { Color, Font } from "../../../styles";
+import SubmitButton from "../../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../assets/Png/AuthBackground.png";
-import DropDown from "../../components/Common/DropDown";
+import Input from "../../../components/Common/Input";
 import { useState } from "react";
 
-export const Studentnumber = () => {
-  const [grade, setGrade] = useState<number | undefined>();
-  const [classNum, setClassNum] = useState<number | undefined>();
-  const [studentNum, setStudentNum] = useState<number | undefined>();
+export const Info = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordCheck: "",
+  });
+
+  const handleChange =
+    (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((prev) => ({
+        ...prev,
+        [key]: e.target.value,
+      }));
+    };
   return (
     <Container>
       <Wrapper>
@@ -23,30 +34,36 @@ export const Studentnumber = () => {
           </ProgressBackground>
         </Top>
         <InputWrapper>
-          <DropDown
-            val={grade}
-            setVal={setGrade}
-            describe="학년을 선택해주세요"
-            items={[1, 2, 3]}
-            label="학년"
+          <Input
+            label="이름"
+            placeholder="이름을 입력해주세요"
+            value={form.name}
+            onChange={handleChange("name")}
           />
-          <DropDown
-            val={classNum}
-            setVal={setClassNum}
-            describe="반을 선택해주세요"
-            items={[1, 2, 3, 4]}
-            label="반"
+          <Input
+            label="이메일"
+            type="email"
+            placeholder="이메일을 입력해주세요"
+            value={form.email}
+            onChange={handleChange("email")}
           />
-          <DropDown
-            val={studentNum}
-            setVal={setStudentNum}
-            describe="번호을 선택해주세요"
-            items={Array.from({ length: 16 }, (_, i) => i + 1)}
-            label="번호"
+          <Input
+            label="비밀번호"
+            type="password"
+            placeholder="비밀번호를 입력해주세요"
+            value={form.password}
+            onChange={handleChange("password")}
+          />
+          <Input
+            label="비밀번호 확인"
+            type="password"
+            placeholder="비밀번호를 확인해주세요"
+            value={form.passwordCheck}
+            onChange={handleChange("passwordCheck")}
           />
         </InputWrapper>
         <InputWrapper>
-          <SubmitButton text="다음" disabled />
+          <SubmitButton text="회원가입" disabled />
           <Login>로그인 하러가기</Login>
         </InputWrapper>
       </Wrapper>
@@ -89,7 +106,7 @@ const ProgressBackground = styled.div`
 
 const ProgressBar = styled.div`
   height: 100%;
-  width: 66%;
+  width: 100%;
   background-color: ${Color.blue800};
   border-radius: 15px 0 0 15px;
   position: absolute;

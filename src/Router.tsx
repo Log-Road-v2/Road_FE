@@ -5,9 +5,9 @@ import Main from "./pages/Main";
 import { VotePage } from "./pages/VotePage";
 import Write from "./pages/Write";
 import Archive from "./pages/Archive";
-import { Role } from "./pages/Signup/Role";
-import { Studentnumber } from "./pages/Signup/StudentNumber";
-import { Info } from "./pages/Signup/Info";
+import { Role } from "./pages/Auth/Signup/Role";
+import { Studentnumber } from "./pages/Auth/Signup/StudentNumber";
+import { Info } from "./pages/Auth/Signup/Info";
 
 function Router() {
   return (
