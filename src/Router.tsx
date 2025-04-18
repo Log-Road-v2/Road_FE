@@ -8,6 +8,7 @@ import Archive from "./pages/Archive";
 import { Role } from "./pages/Auth/Signup/Role";
 import { Studentnumber } from "./pages/Auth/Signup/StudentNumber";
 import { Info } from "./pages/Auth/Signup/Info";
+import { PasswordChange } from "./pages/Auth/PasswordChange";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/signup/role" element={<Role />} />
         <Route path="/signup/studentnumber" element={<Studentnumber />} />
         <Route path="/signup/info" element={<Info />} />
+        <Route path="/passwordchange" element={<PasswordChange />} />
       </Routes>
     </BrowserRouter>
   );
