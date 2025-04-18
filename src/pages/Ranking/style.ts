@@ -52,7 +52,7 @@ export const ContestInfo = styled.div`
   box-shadow: 0px 4px 20px rgba(179, 180, 184, 0.2);
 `;
 
-export const Date = styled.div`
+export const ContestDate = styled.div`
   > p {
     ${Font.medium16};
     color: ${Color.black};

@@ -7,7 +7,7 @@ import ProjectEX from "../assets/Png/ProjectEX.png";
 export const Ranking = () => {
   return (
     <Container>
-      <Number>1</Number>
+      <RankNum>1</RankNum>
       <TextWrapper>
         <Title>프로젝트명</Title>
         <Content>
@@ -20,7 +20,7 @@ export const Ranking = () => {
           <AwardTag text="adsf" />
         </TagWrapper>
       </TextWrapper>
-      <Image src={ProjectEX} />
+      <Image src={ProjectEX} alt="프로젝트 사진 예시"/>
     </Container>
   );
 };
@@ -39,7 +39,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Number = styled.div`
+const RankNum = styled.div`
   width: 54px;
   height: 54px;
   border-radius: 27px;

@@ -23,10 +23,10 @@ export const RankingPage = () => {
         </S.TitleBox>
       </S.TitleWrapper>
       <S.ContestInfo>
-        <S.Date>
+        <S.ContestDate>
           <p>대회 일정</p>
           2024년 5월 12일 ~ 2024년 5월 24일
-        </S.Date>
+        </S.ContestDate>
         <S.AwardList>
           상 목록
           <S.AwardWrapper>
