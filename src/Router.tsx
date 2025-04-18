@@ -7,6 +7,7 @@ import Write from "./pages/Write";
 import Archive from "./pages/Archive";
 import { Role } from "./pages/Signup/Role";
 import { Studentnumber } from "./pages/Signup/StudentNumber";
+import { Info } from "./pages/Signup/Info";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
         </Route>
         <Route path="/signup/role" element={<Role />} />
         <Route path="/signup/studentnumber" element={<Studentnumber />} />
+        <Route path="/signup/info" element={<Info />} />
       </Routes>
     </BrowserRouter>
   );
