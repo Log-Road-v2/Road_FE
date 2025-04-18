@@ -6,6 +6,7 @@ import { VotePage } from "./pages/VotePage";
 import Write from "./pages/Write";
 import Archive from "./pages/Archive";
 import { Role } from "./pages/Signup/Role";
+import { Studentnumber } from "./pages/Signup/StudentNumber";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
           <Route path="/archive" element={<Archive />} />
         </Route>
         <Route path="/signup/role" element={<Role />} />
+        <Route path="/signup/studentnumber" element={<Studentnumber />} />
       </Routes>
     </BrowserRouter>
   );
