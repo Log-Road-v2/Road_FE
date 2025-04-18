@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Logo } from "../../../assets";
 import { Color, Font } from "../../../styles";
 import SubmitButton from "../../../components/Common/Button/SubmitButton";
-import AuthBackground from "../../assets/Png/AuthBackground.png";
+import AuthBackground from "../../../assets/Png/AuthBackground.png";
 import Input from "../../../components/Common/Input";
 import { useState } from "react";
 
