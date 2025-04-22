@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "@emotion/styled";
 import { Font, Color } from "../../../styles";
 
@@ -7,36 +6,33 @@ interface PropsType {
   type?: string;
   placeholder?: string;
   label?: string;
-  error?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({
+const EmailInput = ({
   value,
-  type = "text",
+  type = "email",
   placeholder = "입력해주세요",
   label = "",
-  error = "에러가 발생하였습니다",
   onChange,
   onKeyDown,
   ...props
 }: PropsType) => {
-  const [isError, setIsError] = useState<boolean>(false);
-
   return (
     <InputContainer>
       {label && <Label>{label}</Label>}
-      <InputBox
-        type={type}
-        value={type === "file" ? undefined : value}
-        placeholder={placeholder}
-        {...props}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-      />
-
-      {isError && error && <ErrorText>{error}</ErrorText>}
+      <InputFieldWrapper>
+        <InputBox
+          type={type}
+          value={type === "file" ? undefined : value}
+          placeholder={placeholder}
+          {...props}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+        <SendText>인증번호 전송</SendText>
+      </InputFieldWrapper>
     </InputContainer>
   );
 };
@@ -54,10 +50,15 @@ const Label = styled.p`
   ${Font.regular14}
 `;
 
+const InputFieldWrapper = styled.div`
+  position: relative;
+`;
+
 const InputBox = styled.input<{
   isError?: boolean;
 }>`
-  padding: 12px 16px;
+  width: 100%;
+  padding: 12px 100px 12px 16px;
   border-radius: 8px;
   border: 1px solid ${({ isError }) => (isError ? Color.red400 : Color.gray300)};
   background-color: ${Color.white};
@@ -80,9 +81,18 @@ const InputBox = styled.input<{
   }
 `;
 
-const ErrorText = styled.p`
-  color: ${Color.red500};
-  ${Font.regular14}
+const SendText = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: ${Color.blue500};
+  ${Font.semi12};
+  cursor: pointer;
+
+  &:hover {
+    color: ${Color.blue700};
+  }
 `;
 
-export default Input;
+export default EmailInput;

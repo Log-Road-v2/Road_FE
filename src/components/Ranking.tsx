@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { AuthorTag } from "./Common/Tag/AuthorTag";
 import { AuthorButton } from "./Common/Button/AuthorButton";
 import { AwardTag } from "./Common/Tag/AwardTag";
 import { Color, Font } from "../styles";
