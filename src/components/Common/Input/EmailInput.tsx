@@ -12,7 +12,7 @@ interface PropsType {
 
 const EmailInput = ({
   value,
-  type = "emial",
+  type = "email",
   placeholder = "입력해주세요",
   label = "",
   onChange,
