@@ -10,6 +10,7 @@ import { Studentnumber } from "./pages/Auth/Signup/StudentNumber";
 import { Info } from "./pages/Auth/Signup/Info";
 import { PasswordChange } from "./pages/Auth/PasswordChange";
 import { LoginPage } from "./pages/Auth/Login";
+import { RankingPage } from "./pages/Ranking";
 
 function Router() {
   return (
@@ -18,9 +19,10 @@ function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/main" element={<Main />} />
-          <Route path="/Vote" element={<VotePage />} />
+          <Route path="/vote" element={<VotePage />} />
           <Route path="/write" element={<Write />} />
           <Route path="/archive" element={<Archive />} />
+          <Route path="/ranking" element={<RankingPage />} />
         </Route>
         <Route path="/signup/role" element={<Role />} />
         <Route path="/signup/studentnumber" element={<Studentnumber />} />

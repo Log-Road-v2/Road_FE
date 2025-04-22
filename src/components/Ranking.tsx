@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { AuthorTag } from "./Common/Tag/AuthorTag";
+import { AuthorButton } from "./Common/Button/AuthorButton";
 import { AwardTag } from "./Common/Tag/AwardTag";
 import { Color, Font } from "../styles";
 import ProjectEX from "../assets/Png/ProjectEX.png";
@@ -7,7 +8,7 @@ import ProjectEX from "../assets/Png/ProjectEX.png";
 export const Ranking = () => {
   return (
     <Container>
-      <Number>1</Number>
+      <RankNum>1</RankNum>
       <TextWrapper>
         <Title>프로젝트명</Title>
         <Content>
@@ -16,11 +17,11 @@ export const Ranking = () => {
           머시기한 이유로 만들어졌습니다. 텍스트
         </Content>
         <TagWrapper>
-          <AuthorTag isTeam={true} />
+          <AuthorButton isTeam={true} />
           <AwardTag text="adsf" />
         </TagWrapper>
       </TextWrapper>
-      <Image src={ProjectEX} />
+      <Image src={ProjectEX} alt="프로젝트 사진 예시"/>
     </Container>
   );
 };
@@ -39,7 +40,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Number = styled.div`
+const RankNum = styled.div`
   width: 54px;
   height: 54px;
   border-radius: 27px;
