@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { Screen, Structure, Bookmark } from "../../assets"
-import { Color, Font } from "../../styles"
+import { Color } from "../../styles"
 
 export interface TapDataType {
   id: number;
