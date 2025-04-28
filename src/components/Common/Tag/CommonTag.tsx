@@ -1,5 +1,5 @@
-import styled from "@emotion/styled/macro";
-import { Font, Color } from "../../../styles";
+import styled from "@emotion/styled";
+import { Color, Font } from "../../../styles";
 
 interface PropsType {
   text?: string
@@ -15,9 +15,10 @@ const Tag = styled.div`
   display: flex;
   padding: 4px 20px;
   border: 1px solid ${Color.blue300};
+  border-radius: 20px;
   background-color: ${Color.white};
   color: ${Color.blue300};
-  ${Font.medium16}
-`
+  ${Font.medium14}
+`;
 
-export default CommonTag
+export default CommonTag;
