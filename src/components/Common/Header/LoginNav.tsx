@@ -4,12 +4,12 @@ import ConfirmRoundButton from "../Button/RoundButton"
 import { Color, Font } from "../../../styles"
 
 const LoginNav = () => {
-  const [user, setUser] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
-      {user ? (
-        <UserName>{ }님</UserName>
+      {isLoggedIn ? (
+        <UserName>{"임다영"}님</UserName>
       ) : (
         <ConfirmRoundButton text="로그인" />
       )}
@@ -18,8 +18,9 @@ const LoginNav = () => {
 }
 
 const UserName = styled.div`
+  width: 100px;
   color: ${Color.gray300};
-  ${Font.semi16}
+  ${Font.medium16}
 `
 
 export default LoginNav

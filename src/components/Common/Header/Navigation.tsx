@@ -2,43 +2,49 @@ import styled from "@emotion/styled"
 import { NavigationListData } from "../Data/LayoutData"
 import { Font, Color } from "../../../styles"
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const location = useLocation();
 
+  const filteredLinks = NavigationListData.filter(linkData => linkData.login);
+
   return (
     <NavList>
-      {NavigationListData.map((linkData) =>
-        (linkData.login) && (
-          <li key={linkData.id}>
-            <NavArticle
-              articleHref={linkData.href}
-              pathname={location.pathname}
-            >
-              {linkData.name}
-            </NavArticle>
-          </li>
-        )
+      {filteredLinks.map((linkData) =>
+        <NavItem key={linkData.id}>
+          <StyledLink
+            to={linkData.href}
+            isActive={location.pathname === linkData.href}
+          >
+            {linkData.name}
+          </StyledLink>
+        </NavItem>
       )}
     </NavList>
   )
 }
 
 const NavList = styled.ul`
-  width: 100%;
+  width: 55%;
   display: flex;
   justify-content: space-between;
   list-style: none;
 `
 
-const NavArticle = styled.div<{
-  articleHref: string,
-  pathname: string
-}>`
-  color: ${({ articleHref, pathname }) => articleHref === pathname ? Color.gray700 : Color.gray300};
+const NavItem = styled.li`
+  list-style: none;
+`;
+
+const StyledLink = styled(Link) <{ isActive: boolean }>`
+  color: ${({ isActive }) => (isActive ? Color.gray800 : Color.gray300)};
   text-decoration: none;
   cursor: pointer;
-  ${Font.semi16}
-`
+  ${Font.medium16}
+
+  &:hover {
+    color: ${Color.gray700};
+  }
+`;
 
 export default Navigation
