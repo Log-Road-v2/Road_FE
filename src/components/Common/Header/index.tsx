@@ -4,8 +4,11 @@ import LoginNav from "./LoginNav";
 import { Logo } from "../../../assets";
 import { Color } from "../../../styles";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigation = useNavigate();
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const Header = () => {
   return (
     <Container>
       <InnerContainer width={76}>
-        <Logo />
+        <Logo onClick={() => navigation("/main")}/>
         {!isMobile && <Navigation />}
         <LoginNav />
       </InnerContainer>
