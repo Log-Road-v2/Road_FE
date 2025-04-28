@@ -24,6 +24,7 @@ export interface SlideImageDataType {
 }
 
 export interface AccessMessageItemProps {
+  href: string;
   title: string;
   description: string;
   icon: React.ReactNode;

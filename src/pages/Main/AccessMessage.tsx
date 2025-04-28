@@ -3,14 +3,16 @@ import { Add } from "../../assets";
 import { Color, Font } from "../../styles";
 import { ShortcutData } from "./Data/data";
 import { AccessMessageItemProps } from "./Data/interface";
+import { useNavigate } from "react-router-dom";
 
 const AccessMessage = () => {
   return (
     <MessageList>
-      {ShortcutData.map(({ id, title, description, icon, positionX, positionY }) => (
+      {ShortcutData.map(({ id, title, href, description, icon, positionX, positionY }) => (
         <AccessMessageItem
           key={id}
           title={title}
+          href={href}
           description={description}
           icon={icon}
           positionX={positionX}
@@ -23,9 +25,15 @@ const AccessMessage = () => {
 
 export default AccessMessage
 
-const AccessMessageItem = ({ title, description, icon, positionX, positionY }: AccessMessageItemProps) => {
+const AccessMessageItem = ({ href, title, description, icon, positionX, positionY }: AccessMessageItemProps) => {
+  const navigation = useNavigate();
+
   return (
-    <AccessMessageContainer positionX={positionX} positionY={positionY}>
+    <AccessMessageContainer
+      positionX={positionX}
+      positionY={positionY}
+      onClick={() => navigation(href)}
+    >
       <IconWrapper>{icon}</IconWrapper>
       <Content>
         <DirectTitle>{title}</DirectTitle>

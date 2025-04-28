@@ -66,7 +66,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px 24px 24px;
+  padding: 16px 32px 24px;
   gap: 24px;
   border-radius: 16px;
   background-color: ${Color.gray800};
@@ -102,7 +102,6 @@ const AlertText = styled.p`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
 `
 

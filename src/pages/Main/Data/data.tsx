@@ -15,7 +15,7 @@ const ShortcutData: ShortcutDataType[] = [
     id: 1,
     title: "DSM의 다양한 프로젝트 보러가기",
     description: "DSM 학생들의 다양한 프로젝트를 한눈에 보고 싶다면\n더보기를 눌러보세요!",
-    href: "",
+    href: "/archive",
     icon: <FolderIcon size={32} />,
     positionX: 8,
     positionY: 0
@@ -24,7 +24,7 @@ const ShortcutData: ShortcutDataType[] = [
     id: 2,
     title: "최신 랭킹 보러가기",
     description: "최근 대회 랭킹을 확인하려면 더보기를 클릭하세요!",
-    href: "",
+    href: "/ranking",
     icon: <TrophyIcon size={32} />,
     positionX: 32,
     positionY: 28
@@ -33,7 +33,7 @@ const ShortcutData: ShortcutDataType[] = [
     id: 3,
     title: "프로젝트 업로드 하러가기",
     description: "지금 프로젝트를 업로드하여 다른 사람들과 공유하고,\n내 프로젝트를 저장해보세요!",
-    href: "",
+    href: "/write",
     icon: <LaptopIcon size={32} />,
     positionX: 55,
     positionY: 6
