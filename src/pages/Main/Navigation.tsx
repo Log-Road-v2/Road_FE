@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { NavigationListData } from "../Main/Data/NavigationData";
+import { NavigationListData } from "./Data/data";
 import { Font, Color } from "../../styles"
 
 const Navigation = () => {
@@ -18,6 +18,7 @@ const Navigation = () => {
 
 const NavList = styled.nav`
   width: 100%;
+  max-width: 479px;
   display: flex;
   justify-content: space-between;
 `

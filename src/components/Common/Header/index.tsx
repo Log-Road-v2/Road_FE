@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <Container>
-      <InnerContainer width={76}>
+      <InnerContainer width={80}>
         <Logo onClick={() => navigation("/main")} />
         {!isMobile && <Navigation />}
         <LoginNav />
@@ -48,6 +48,7 @@ const InnerContainer = styled.div<{
   width?: number
 }>`
   width: ${({ width = 10 }) => `${width}vw`};
+  max-width: 1180px;
   display: flex;
   justify-content: space-between;
   align-items: center;

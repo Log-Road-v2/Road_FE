@@ -21,3 +21,11 @@ export interface SlideImageDataType {
   title: string;
   subTitle: string
 }
+
+export interface AccessMessageItemProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  positionX: number;
+  positionY: number;
+}
