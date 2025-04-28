@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <Container>
       <InnerContainer width={76}>
-        <Logo onClick={() => navigation("/main")}/>
+        <Logo onClick={() => navigation("/main")} />
         {!isMobile && <Navigation />}
         <LoginNav />
       </InnerContainer>
