@@ -123,6 +123,7 @@ const AccessButton = styled.button`
   padding: 8px;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
   background-color: ${Color.gray600};
   color: ${Color.gray100};
   ${Font.regular12}

@@ -44,22 +44,26 @@ const NavigationListData: NavigationListDataType[] = [
   {
     id: "Archive",
     title: "아카이브",
-    icon: <Archive />
+    icon: <Archive />,
+    href: "/archive"
   },
   {
     id: "Vote",
     title: "투표",
-    icon: <Vote />
+    icon: <Vote />,
+    href: "/vote"
   },
   {
     id: "Rank",
     title: "수상작",
-    icon: <Trophy />
+    icon: <Trophy />,
+    href: "/ranking"
   },
   {
     id: "Write",
     title: "글 작성",
-    icon: <File />
+    icon: <File />,
+    href: "/write"
   },
 ]
 

@@ -13,7 +13,8 @@ export interface ShortcutDataType {
 export interface NavigationListDataType {
   id: string;
   title: string;
-  icon: ReactNode
+  icon: ReactNode;
+  href: string
 }
 
 export interface SlideImageDataType {

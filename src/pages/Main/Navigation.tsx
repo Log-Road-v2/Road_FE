@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import { NavigationListData } from "./Data/data";
 import { Font, Color } from "../../styles"
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const navigation = useNavigate();
 
   return (
     <NavList>
-      {NavigationListData.map(({ id, icon, title }) => (
-        <NavArticle key={id}>
+      {NavigationListData.map(({ id, icon, title, href }) => (
+        <NavArticle key={id} onClick={() => navigation(href)}>
           <IconWrapper>{icon}</IconWrapper>
           <LinkText>{title}</LinkText>
         </NavArticle>
@@ -21,6 +23,7 @@ const NavList = styled.nav`
   max-width: 479px;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 `
 
 const NavArticle = styled.div`
