@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import { VotePage } from "./pages/VotePage";
 import Write from "./pages/Write";
 import Archive from "./pages/Archive";
+import MyPage from "./pages/MyPage";
 import { Role } from "./pages/Auth/Signup/Role";
 import { Studentnumber } from "./pages/Auth/Signup/StudentNumber";
 import { Info } from "./pages/Auth/Signup/Info";
@@ -18,6 +19,7 @@ function Router() {
       <GlobalStyle />
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/main" element={<Main />} />
           <Route path="/vote" element={<VotePage />} />
           <Route path="/write" element={<Write />} />
