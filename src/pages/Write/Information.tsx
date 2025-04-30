@@ -34,7 +34,6 @@ const Information = () => {
 
   return (
     <S.InformationContainer>
-      <pre>{JSON.stringify(info, null, 2)}</pre>
       <S.Line />
 
       <FormSection label="업로드 대회" required>
@@ -114,11 +113,11 @@ const Information = () => {
 
       <FormSection label="시연영상" required>
         <Input
-          value={info.vedio}
+          value={info.video}
           placeholder="시연영상 링크를 입력해주세요"
           label=""
           error=""
-          onChange={(e) => setInfo({ vedio: e.target.value })}
+          onChange={(e) => setInfo({ video: e.target.value })}
         />
       </FormSection>
 

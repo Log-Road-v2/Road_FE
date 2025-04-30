@@ -28,13 +28,14 @@ const Preview = () => {
         <S.ProjectInfo>
           {info.introduction}
         </S.ProjectInfo>
-        <S.PreviewImage />
+        
+        <S.PreviewImage src={info.image} />
       </S.OverviewSection>
 
       <S.MetaInfoSection>
         <MetaItem title="프로젝트 유형">
           <S.TeamList>
-            <S.MetaText>{info.authorCategory}</S.MetaText>
+            <S.MetaText>{info.authorCategory === "PERSONAL" ? "개인" : "팀"}</S.MetaText>
             <S.MetaText>{info.teamName}</S.MetaText>
           </S.TeamList>
         </MetaItem>
@@ -53,9 +54,9 @@ const Preview = () => {
 
         <MetaItem title="기술 스택">
           <S.TechStackList>
-            {/* {info.skills.map((value, index) => (
+            {info.skills.map((value, index) => (
               <SkillTag key={index} text={value} />
-            ))} */}
+            ))}
           </S.TechStackList>
         </MetaItem>
       </S.MetaInfoSection>
@@ -66,7 +67,9 @@ const Preview = () => {
 
       <MarkDownPreview markdown={info.description} />
 
-      <S.VideoSection></S.VideoSection>
+      <S.VideoSection controls>
+        <source src={info.video} />
+      </S.VideoSection>
     </S.InformationContainer>
   );
 };
