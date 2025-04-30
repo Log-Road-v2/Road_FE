@@ -24,15 +24,17 @@ const Skill = () => {
   return (
     <S.Container>
       <Input
+        width="100%"
         value={inputValue}
         placeholder="기술스택을 입력해주세요"
-        label=""
         error=""
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
-            handleAddSkill();
+            setTimeout(() => {
+              handleAddSkill();
+            }, 0);
           }
         }}
       />

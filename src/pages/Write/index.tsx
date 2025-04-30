@@ -23,6 +23,10 @@ const Write = () => {
     }
   };
 
+  const handleSaveDraft = () => { }
+
+  const handleUpload = () => { }
+
   return (
     <S.Container>
       <S.ImageWrapper src={WriteImage} />
@@ -50,8 +54,8 @@ const Write = () => {
       <S.ContentWrapper>{renderContent()}</S.ContentWrapper>
 
       <S.ButtonWrapper>
-        <SubmitButton text="임시저장" disabled={true} />
-        <SubmitButton text="업로드" />
+        <SubmitButton text="임시저장" disabled={true} onClick={() => handleSaveDraft} />
+        <SubmitButton text="업로드" onClick={() => handleUpload} />
       </S.ButtonWrapper>
 
     </S.Container>

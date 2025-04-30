@@ -5,7 +5,7 @@ interface PropsType {
   text?: string
 }
 
-const CommonTag = ({text} : PropsType) => {
+const CommonTag = ({ text }: PropsType) => {
   return (
     <Tag>{text}</Tag>
   )

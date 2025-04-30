@@ -138,7 +138,7 @@ export const ProjectInfo = styled.p`
 export const PreviewImage = styled.img`
   width: 100%;
   height: 340px;
-  background-color: ${Color.gray300};
+  background-color: ${Color.gray200};
 `
 
 export const MetaInfoSection = styled.div`
@@ -170,11 +170,15 @@ export const TeamList = styled.div`
   gap: 24px;
 `
 
-export const TechStackList = styled.div``
+export const TechStackList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`
 
 export const ProjectDetails = styled.div``
 
-export const VideoSection = styled.div`
+export const VideoSection = styled.video`
   width: 100%;
   height: 370px;
   background-color: ${Color.gray300};

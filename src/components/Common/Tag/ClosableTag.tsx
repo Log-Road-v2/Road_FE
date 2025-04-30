@@ -3,15 +3,19 @@ import { Color, Font } from "../../../styles";
 import { X } from "../../../assets/X"
 
 interface PropsType {
-  text?: string
+  text: string
   onClose?: () => void
 }
 
 const ClosableTag = ({ text, onClose }: PropsType) => {
   return (
     <Container>
-      <InnerText>{text}</InnerText>
-      <X size={16} color={Color.blue500} onClick={onClose} />
+      <InnerText>{text || ""}</InnerText>
+      <X
+        size={16}
+        color={Color.blue500}
+        onClick={onClose}
+      />
     </Container>
   )
 }

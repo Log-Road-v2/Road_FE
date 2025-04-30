@@ -7,6 +7,7 @@ interface Member {
 }
 
 interface InfoData {
+  video: string;
   contestId: number;
   projectName: string;
   authorCategory: AuthorCategory | null;
@@ -18,7 +19,6 @@ interface InfoData {
   startDate: string | null;
   endDate: string | null;
   image: string;
-  vedio: string;
 }
 
 interface WriteStoreType {
@@ -39,7 +39,7 @@ const initialInfo: InfoData = {
   startDate: null,
   endDate: null,
   image: '',
-  vedio: ''
+  video: ''
 };
 
 export const useWriteStore = create<WriteStoreType>((set) => ({
