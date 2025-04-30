@@ -5,10 +5,14 @@ import { ShortcutData } from "./Data/data";
 import { AccessMessageItemProps } from "./Data/interface";
 import { useNavigate } from "react-router-dom";
 
-const AccessMessage = () => {
+interface AccessMessageProps {
+  data?: typeof ShortcutData
+}
+
+const AccessMessage = ({ data = ShortcutData }: AccessMessageProps) => {
   return (
     <MessageList>
-      {ShortcutData.map(({ id, title, href, description, icon, positionX, positionY }) => (
+      {data.map(({ id, title, href, description, icon, positionX, positionY }) => (
         <AccessMessageItem
           key={id}
           title={title}
@@ -51,7 +55,7 @@ const AccessMessageItem = ({ href, title, description, icon, positionX, position
 const MessageList = styled.div`
   position: relative;
   width: 100%;
-  height: 70vh;
+  min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom"
 
 const LoginNav = () => {
   const navigation = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const isLoggedIn = true;
+  const [userInfo, setUserInfo] = useState<string>("게스트")
 
   return (
     <NavWrapper>
       {isLoggedIn ? (
-        <UserName>{"임다영"}님</UserName>
+        <UserName>{userInfo}님</UserName>
       ) : (
         <ConfirmRoundButton
           text="로그인"
