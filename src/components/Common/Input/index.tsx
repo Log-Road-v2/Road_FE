@@ -30,6 +30,7 @@ const Input = ({
     <InputContainer width={width}>
       {label && <Label>{label}</Label>}
       <InputBox
+        isError={isError}
         type={type}
         value={type === "file" ? undefined : value}
         placeholder={placeholder}

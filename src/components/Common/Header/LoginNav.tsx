@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "@emotion/styled"
-import ConfirmRoundButton from "../Button/RoundButton"
+import RoundButton from "../Button/RoundButton"
 import { Color, Font } from "../../../styles"
 import { useNavigate } from "react-router-dom"
 
@@ -14,7 +14,7 @@ const LoginNav = () => {
       {isLoggedIn ? (
         <UserName>{userInfo}님</UserName>
       ) : (
-        <ConfirmRoundButton
+        <RoundButton
           text="로그인"
           onClick={() => navigation("/login")}
         />

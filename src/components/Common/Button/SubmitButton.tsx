@@ -4,10 +4,11 @@ import { Font, Color } from "../../../styles";
 interface PropsButtonType {
   text?: string;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
-const SubmitButton = ({ text, disabled = false }: PropsButtonType) => {
-  return <Button disabled={disabled}>{text}</Button>;
+const SubmitButton = ({ text, disabled = false, onClick }: PropsButtonType) => {
+  return <Button disabled={disabled} onClick={onClick}>{text}</Button>;
 };
 
 const Button = styled.button<{

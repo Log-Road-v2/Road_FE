@@ -2,7 +2,7 @@ import * as S from "./style";
 import DropDown from "../../components/Common/DropDown";
 import Input from "../../components/Common/Input";
 import TextArea from "../../components/Common/TextArea";
-import CalendarInput from "../../components/Write/Calendar/Input";
+import CalendarInput from "../../components/Common/Calendar/Input";
 import Student from "./Input/Student";
 import Skill from "./Input/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
@@ -129,6 +129,9 @@ const Information = () => {
             if (file) {
               const imageUrl = URL.createObjectURL(file);
               setInfo({ image: imageUrl });
+              return () => {
+                URL.revokeObjectURL(imageUrl)
+              }
             }
           }}
         />

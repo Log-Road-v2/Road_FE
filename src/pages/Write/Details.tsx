@@ -7,11 +7,6 @@ const Details = () => {
 
   return (
     <S.InformationContainer>
-      <S.TextBox>
-        <S.SectionDetailText></S.SectionDetailText>
-        <S.Required></S.Required>
-      </S.TextBox>
-
       <S.Line />
       <TextArea
         value={info.description}
@@ -22,7 +17,7 @@ const Details = () => {
             description: e.target.value,
           })
         }
-        placeholder="마크다운을 입력하세요"
+        placeholder="프로젝트 설명을 입력해주세요."
       />
       <S.Line />
     </S.InformationContainer >
