@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { Font, Color } from "../../../styles";
 
 interface PropsType {
+  width?: string;
   value?: string;
   type?: string;
   placeholder?: string;
@@ -13,6 +14,7 @@ interface PropsType {
 }
 
 const Input = ({
+  width = "360px",
   value,
   type = "text",
   placeholder = "입력해주세요",
@@ -25,7 +27,7 @@ const Input = ({
   const [isError, setIsError] = useState<boolean>(false);
 
   return (
-    <InputContainer>
+    <InputContainer width={width}>
       {label && <Label>{label}</Label>}
       <InputBox
         type={type}
@@ -41,8 +43,8 @@ const Input = ({
   );
 };
 
-const InputContainer = styled.div`
-  width: 360px;
+const InputContainer = styled.div<{ width?: string }>`
+  width: ${({ width }) => width};
   flex: 1;
   display: flex;
   flex-direction: column;
