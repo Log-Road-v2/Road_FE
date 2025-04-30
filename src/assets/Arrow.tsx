@@ -26,9 +26,9 @@ export const Arrow = ({ size = 24, color = "#000", rotate = 'top', onClick }: Ar
     >
       <path
         stroke={color}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
         d="m17 14-5-5-5 5"
       />
     </svg>
