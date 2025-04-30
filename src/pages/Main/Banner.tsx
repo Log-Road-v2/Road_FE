@@ -1,34 +1,36 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import * as S from "./style"
 import { Play, Move } from "../../assets"
 import { Color } from "../../styles"
-import { SlideImageData } from "../../components/Main/Data/NavigationData"
+import { SlideImageData } from "./Data/data"
 
-const SlideImage = () => {
+const Banner = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [isImageSlide, setIsImageSlide] = useState<boolean>(true);
 
-  const handlePrev = () => {
-    setCurrentPage((prev) => (prev === 0 ? SlideImageData.length - 1 : prev - 1));
-  };
+  const handlePrev = useCallback(() => {
+    setCurrentPage(prev => (prev === 0 ? SlideImageData.length - 1 : prev - 1));
+  }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentPage((prev) => (prev === SlideImageData.length - 1 ? 0 : prev + 1));
-  };
+  }, []);
+
+  const toggleSlide = useCallback(() => {
+    setIsImageSlide(prev => !prev);
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
     if (isImageSlide) {
-      interval = setInterval(() => {
-        setCurrentPage((prev) => (prev === SlideImageData.length - 1 ? 0 : prev + 1));
-      }, 5000);
+      interval = setInterval(handleNext, 7000);
     }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isImageSlide]);
+  }, [isImageSlide, handleNext]);
 
 
   return (
@@ -43,7 +45,7 @@ const SlideImage = () => {
 
         <S.PaginationController>
           <Move size={12} color={Color.gray200} rotate="left" onClick={handlePrev} />
-          <S.PlayBackWrapper onClick={() => setIsImageSlide(!isImageSlide)} >
+          <S.PlayBackWrapper onClick={toggleSlide} >
             {isImageSlide ?
               <Play size={16} color={Color.gray200} /> :
               <Move size={16} color={Color.gray200} rotate="right" />
@@ -58,4 +60,4 @@ const SlideImage = () => {
   )
 }
 
-export default SlideImage
+export default Banner

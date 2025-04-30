@@ -13,15 +13,24 @@ const RoundButton = ({ text, onClick }: PropsType) => {
 }
 
 const Button = styled.button`
-  display: inline;
+  display: inline-flex; 
   justify-content: center;
   align-items: center;
   padding: 12px 36px;
   border-radius: 20px;
   border: none;
+  cursor: pointer;
   background-color: ${Color.gray800};
   color: ${Color.white};
-  ${Font.semi14}
+  ${Font.medium14}
+
+  &:hover {
+    background-color: ${Color.gray700};
+  }
+
+  &:focus {
+    background-color: ${Color.gray700};
+  }
 `
 
 export default RoundButton;

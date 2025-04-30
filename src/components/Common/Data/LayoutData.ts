@@ -4,31 +4,31 @@ const NavigationListData: NavigationListDataType[] = [
   {
     id: 1,
     name: "아카이브",
-    href: "",
+    href: "/archive",
     login: true
   },
   {
     id: 2,
     name: "투표",
-    href: "",
+    href: "/vote",
     login: true
   },
   {
     id: 3,
     name: "수상작",
-    href: "",
+    href: "/ranking",
     login: true
   },
   {
     id: 4,
     name: "글작성",
-    href: "",
+    href: "/write",
     login: true
   },
   {
     id: 5,
     name: "마이페이지",
-    href: "",
+    href: "/mypage",
     login: true
   },
 ]

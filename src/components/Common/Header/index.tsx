@@ -3,24 +3,38 @@ import Navigation from "./Navigation";
 import LoginNav from "./LoginNav";
 import { Logo } from "../../../assets";
 import { Color } from "../../../styles";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigation = useNavigate();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Container>
-      <DesktopContainer width={58}>
-        <Logo />
-
-        <Navigation />
-
+      <InnerContainer width={80}>
+        <Logo onClick={() => navigation("/main")} />
+        {!isMobile && <Navigation />}
         <LoginNav />
-      </DesktopContainer>
+      </InnerContainer>
     </Container>
   );
 };
 
 const Container = styled.header`
   position: fixed;
-  width: 100vw;
+  top: 0;
+  width: 100%;
   height: 64px;
   display: flex;
   justify-content: center;
@@ -30,18 +44,14 @@ const Container = styled.header`
   z-index: 100;
 `;
 
-const DesktopContainer = styled.div<{
+const InnerContainer = styled.div<{
   width?: number
 }>`
-  width: ${({ width }) => `${width ?? 10}vw`};
+  width: ${({ width = 10 }) => `${width}vw`};
+  max-width: 1180px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 72px;
-  background-color: ${Color.white};
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export default Header;
