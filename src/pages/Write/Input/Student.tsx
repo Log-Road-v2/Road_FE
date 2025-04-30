@@ -70,6 +70,7 @@ const Student = () => {
   return (
     <S.Container>
       <Input
+        width="100%"
         value={inputValue}
         placeholder="학번이나 이름을 입력해주세요"
         label=""
