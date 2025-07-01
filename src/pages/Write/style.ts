@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
-  padding: 64px 0;
+  padding: 96px 0;
 `
 
 export const ImageWrapper = styled.img`
@@ -138,7 +138,9 @@ export const ProjectInfo = styled.p`
 export const PreviewImage = styled.img`
   width: 100%;
   height: 340px;
-  background-color: ${Color.gray200};
+  background-color: ${Color.gray100};
+  object-fit: contain;
+  object-position: center;
 `
 
 export const MetaInfoSection = styled.div`

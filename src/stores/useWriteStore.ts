@@ -1,25 +1,5 @@
 import { create } from 'zustand'
-
-type AuthorCategory = 'PERSONAL' | 'TEAM';
-
-interface Member {
-  studentId: number;
-}
-
-interface InfoData {
-  video: string;
-  contestId: number;
-  projectName: string;
-  authorCategory: AuthorCategory | null;
-  teamName: string;
-  skills: string[];
-  members: Member[];
-  introduction: string;
-  description: string;
-  startDate: string | null;
-  endDate: string | null;
-  image: string;
-}
+import { InfoData } from '../interface';
 
 interface WriteStoreType {
   info: InfoData;
@@ -30,14 +10,14 @@ interface WriteStoreType {
 const initialInfo: InfoData = {
   contestId: 0,
   projectName: '',
-  authorCategory: null,
+  authorCategory: 'PERSONAL',
   teamName: '',
   skills: [],
   members: [],
   introduction: '',
   description: '',
-  startDate: null,
-  endDate: null,
+  startDate: '',
+  endDate: '',
   image: '',
   video: ''
 };
