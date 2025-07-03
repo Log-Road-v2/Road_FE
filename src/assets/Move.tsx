@@ -24,7 +24,7 @@ export const Move = ({ size = 24, color = "#000", rotate = 'top', onClick }: Mov
       onClick={onClick}
       style={{ transform: `rotate(${rotation}deg)` }}
     >
-      <path fill={color} fill-rule="evenodd" d="M5.2 15.4A1 1 0 0 0 6 17h12a1 1 0 0 0 .8-1.6l-6-8a1 1 0 0 0-1.6 0l-6 8Z" clip-rule="evenodd" />
+      <path fill={color} fillRule="evenodd" d="M5.2 15.4A1 1 0 0 0 6 17h12a1 1 0 0 0 .8-1.6l-6-8a1 1 0 0 0-1.6 0l-6 8Z" clipRule="evenodd" />
     </svg>
   )
 } 

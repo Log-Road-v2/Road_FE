@@ -43,12 +43,19 @@ const DropDown = <T,>({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const renderLabel = (value: T | undefined) => {
+    if (!value) return describe;
+    return typeof value === "object" && value !== null && "name" in value
+      ? (value as any).name
+      : String(value);
+  };
+
   return (
     <DropDownContainer width={width}>
       {label && <Label>{label}</Label>}
 
       <DropDownBox onClick={toggleOpen}>
-        <Describe>{val ? String(val) : describe}</Describe>
+        <Describe>{renderLabel(val)}</Describe>
 
         {isOpen ? (
           <Arrow size={20} color={Color.gray300} rotate="bottom" />
@@ -60,7 +67,7 @@ const DropDown = <T,>({
         <DropDownListBox isOpen={isOpen}>
           {items.map((item, index) => (
             <DropDownItem key={index} onClick={() => clickItem(item)}>
-              {String(item)}
+              {renderLabel(item)}
             </DropDownItem>
           ))}
         </DropDownListBox>
@@ -106,7 +113,7 @@ const DropDownListBox = styled.div<{
   isOpen?: boolean;
 }>`
   position: absolute;
-  top: 54px;
+  top: 72px;
   width: 100%;
   max-height: 320px;
   display: flex;

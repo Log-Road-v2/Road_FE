@@ -79,11 +79,19 @@ export const Content = styled.div`
   flex-direction: column;
 `
 
-export const ProjectWrapper = styled.div``
+export const ProjectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
 
 export const Total = styled.p``
 
-export const ProjectCardList = styled.div``
+export const ProjectCardList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+`
 
 export const SearchWrapper = styled.div`
   display: flex;

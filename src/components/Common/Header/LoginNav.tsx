@@ -1,22 +1,25 @@
-import { useState } from "react"
 import styled from "@emotion/styled"
 import RoundButton from "../Button/RoundButton"
 import { Color, Font } from "../../../styles"
 import { useNavigate } from "react-router-dom"
+import { useGetUserInfo } from "../../../apis/user"
 
 const LoginNav = () => {
-  const navigation = useNavigate();
-  const isLoggedIn = true;
-  const [userInfo, setUserInfo] = useState<string>("게스트")
+  const navigate = useNavigate();
+  const { data: userInfo, isLoading, isError } = useGetUserInfo();
+
+  const isLoggedIn = !!userInfo;
 
   return (
     <NavWrapper>
-      {isLoggedIn ? (
-        <UserName>{userInfo}님</UserName>
+      {isLoggedIn && !isLoading && !isError ? (
+        <UserName onClick={() => navigate("/mypage")}>
+          {userInfo.name}님
+        </UserName>
       ) : (
         <RoundButton
           text="로그인"
-          onClick={() => navigation("/login")}
+          onClick={() => navigate("/login")}
         />
       )}
     </NavWrapper>
