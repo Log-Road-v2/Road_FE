@@ -4,23 +4,41 @@ import { Color, Font } from "../../../styles";
 import SubmitButton from "../../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../../assets/Png/AuthBackground.png";
 import Input from "../../../components/Common/Input";
+import { useRegisterStore } from "../../../stores/useRegisterStore";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSignUp } from "../../../apis/auth";
+import EmailInput from "../../../components/Common/Input/EmailInput"
 
 export const Info = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    passwordCheck: "",
-  });
+  const navigate = useNavigate();
+
+  const { mutate: signUp } = useSignUp();
+
+  const { name, email, password, code, setField } = useRegisterStore();
+  const [passwordCheck, setPasswordCheck] = useState("");
 
   const handleChange =
-    (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setForm((prev) => ({
-        ...prev,
-        [key]: e.target.value,
-      }));
-    };
+    (key: "name" | "email" | "password" | "code") =>
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setField(key, e.target.value);
+      };
+
+  const isValid =
+    name.trim() !== "" &&
+    email.trim() !== "" &&
+    password.length >= 8 &&
+    password === passwordCheck;
+
+  const handleSubmit = () => {
+    if (!isValid) return;
+
+    signUp(undefined, {
+      onSuccess: () => { navigate("/login") },
+      onError: () => console.log("회원가입에 실패했습니다.")
+    })
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -37,40 +55,48 @@ export const Info = () => {
           <Input
             label="이름"
             placeholder="이름을 입력해주세요"
-            value={form.name}
+            value={name}
             onChange={handleChange("name")}
           />
-          <Input
+          <EmailInput
             label="이메일"
             type="email"
             placeholder="이메일을 입력해주세요"
-            value={form.email}
+            value={email}
             onChange={handleChange("email")}
+          />
+          <Input
+            label="인증번호 전송"
+            type="text"
+            placeholder="인증번호를 입력해주세요"
+            value={code}
+            onChange={handleChange("code")}
           />
           <Input
             label="비밀번호"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            value={form.password}
+            value={password}
             onChange={handleChange("password")}
           />
           <Input
             label="비밀번호 확인"
             type="password"
             placeholder="비밀번호를 확인해주세요"
-            value={form.passwordCheck}
-            onChange={handleChange("passwordCheck")}
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
           />
         </InputWrapper>
         <InputWrapper>
-          <SubmitButton text="회원가입" disabled />
-          <Login>로그인 하러가기</Login>
+          <SubmitButton text="회원가입" disabled={!isValid} onClick={handleSubmit} />
+          <Login onClick={() => navigate('/login')}>로그인 하러가기</Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />
     </Container>
   );
 };
+
 const Container = styled.div`
   display: flex;
 `;

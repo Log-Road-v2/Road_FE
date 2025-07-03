@@ -4,8 +4,29 @@ import { Color, Font } from "../../../styles";
 import { AuthorButton } from "../../../components/Common/Button/AuthorButton";
 import SubmitButton from "../../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../../assets/Png/AuthBackground.png";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useRegisterStore } from "../../../stores/useRegisterStore";
 
 export const Role = () => {
+  const navigate = useNavigate();
+  const [isStudent, setIsStudent] = useState<boolean | null>(null)
+  const setField = useRegisterStore((state) => state.setField);
+
+  const handleRoleSelect = (value: boolean) => {
+    setIsStudent(value);
+    setField("role", value ? "STUDENT" : "TEACHER");
+  };
+
+  const handleSubmit = () => {
+    if (isStudent === null) return;
+    if (isStudent) {
+      navigate("/signup/studentnumber");
+    } else {
+      navigate("/signup/info");
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -19,18 +40,23 @@ export const Role = () => {
           </ProgressBackground>
         </Top>
         <InputWrapper>
-          <AuthorButton isStudent={true} />
-          <AuthorButton isStudent={false} />
+          <AuthorButton isStudent={true} onClick={() => handleRoleSelect(true)} />
+          <AuthorButton isStudent={false} onClick={() => handleRoleSelect(false)} />
         </InputWrapper>
         <InputWrapper>
-          <SubmitButton text="다음" disabled />
-          <Login>로그인 하러가기</Login>
+          <SubmitButton
+            text="다음"
+            disabled={isStudent === null}
+            onClick={handleSubmit}
+          />
+          <Login onClick={() => navigate("/login")}>로그인 하러가기</Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />
     </Container>
   );
 };
+
 const Container = styled.div`
   display: flex;
 `;
