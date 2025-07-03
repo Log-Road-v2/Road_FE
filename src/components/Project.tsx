@@ -1,29 +1,61 @@
 import styled from "@emotion/styled";
 import { AuthorTag } from "./Common/Tag/AuthorTag";
 import { VoteButton } from "./Common/Button/VoteButton";
-import ProjectEx from "../assets/ProjectEx.png";
 import { Color, Font } from "../styles";
-import { useState } from "react";
 import { ProjectCheck } from "../assets/ProjectCheck";
+import { getUserProject } from "../interface";
+import { Bookmark } from "../assets";
+import { useState } from "react";
+import { toggleBookmark } from "../apis/project"
+import { useNavigate } from "react-router-dom";
 
-export const Project = () => {
-  const [isVoted] = useState(true);
+export const Project = ({
+  id,
+  projectName,
+  introduction,
+  authorCategory,
+  image,
+  isVoted = true,
+  initialBookmarked = false,
+}: getUserProject & { isVoted?: boolean, initialBookmarked?: boolean }) => {
+  const navigate = useNavigate();
+  const projectId = Number(id)
+
+  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
+  const mutation = toggleBookmark(projectId);
+
+  const handleCardClick = () => {
+    navigate(`/project/${projectId}`);
+  };
+
+  const handleBookmarkClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    mutation.mutate(undefined, {
+      onSuccess: () => {
+        setIsBookmarked((prev) => !prev);
+      },
+    });
+  };
+
   return (
-    <Container isVoted={isVoted}>
+    <Container isVoted={isVoted} onClick={handleCardClick}>
       {isVoted && (
         <BlackBox>
           <ProjectCheck />
         </BlackBox>
       )}
-      <Image src={ProjectEx} />
+      <Image src={image} />
       <Wrapper>
-        <Title>제목!</Title>
-        <Content>
-          한줄소개내용임니다람쥐한줄소개내용임니다람쥐한줄소개내용임니다람쥐
-        </Content>
+        <TitleWrap>
+          <Title>{projectName}</Title>
+          <BookmarkWrapper onClick={handleBookmarkClick}>
+            <Bookmark color={isBookmarked ? Color.blue500 : Color.gray200} />
+          </BookmarkWrapper>
+        </TitleWrap>
+        <Content>{introduction}</Content>
         <ButtonWrapper>
-          <AuthorTag isTeam={true} />
-          <VoteButton isVote={false} isDisabled={false} />
+          <AuthorTag isTeam={authorCategory === "TEAM"} />
+          {isVoted && <VoteButton isVote={false} isDisabled={false} />}
         </ButtonWrapper>
       </Wrapper>
     </Container>
@@ -37,6 +69,17 @@ const Container = styled.div<{ isVoted: boolean }>`
   box-shadow: 0px 4px 20px rgba(179, 180, 184, 0.2);
   border: ${({ isVoted }) => (isVoted ? `1px solid ${Color.gray800}` : "none")};
   position: relative;
+  cursor: pointer;
+`;
+
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const BookmarkWrapper = styled.div`
+  cursor: pointer;
 `;
 
 const BlackBox = styled.div`
