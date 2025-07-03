@@ -26,7 +26,7 @@ const Navigation = () => {
 }
 
 const NavList = styled.ul`
-  width: 55%;
+  width: 35%;
   display: flex;
   justify-content: space-between;
   list-style: none;
