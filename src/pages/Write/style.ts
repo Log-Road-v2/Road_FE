@@ -9,6 +9,14 @@ export const Container = styled.div`
   padding: 96px 0;
 `
 
+export const PreviewContainer = styled.div<{ isPreview: boolean }>`
+  width: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: ${({ isPreview }) => isPreview ? '32px 0' : '96px 0'}
+`
+
 export const ImageWrapper = styled.img`
   position: relative;
   width: 100vw;
@@ -182,10 +190,25 @@ export const ProjectDetails = styled.div``
 
 export const VideoSection = styled.video`
   width: 100%;
-  height: 370px;
+  height: 520px;
   background-color: ${Color.gray300};
 `
 
 export const Content = styled.div`
   width: 100%;
 `
+
+export const SaveDraftButton = styled.button`
+  width: 172px;
+  height: 44px;
+  padding: 12px 56px;
+  border-radius: 8px;
+  border: none;
+  background-color: ${Color.gray200};
+  color: ${Color.gray400};
+  ${Font.medium14}
+  
+  &:hover {
+    background-color: ${Color.gray300};
+  }
+`;
