@@ -68,9 +68,38 @@ export const createProject = () => {
 
   return useMutation({
     mutationFn: async (info: InfoData) => {
-      await instance.post(`${path}`, info)
+      const formData = new FormData();
+
+      const json = {
+        projectId: info.projectId,
+        contestId: info.contestId,
+        projectName: info.projectName,
+        authorCategory: info.authorCategory,
+        teamName: info.teamName,
+        skills: info.skills,
+        members: info.members,
+        introduction: info.introduction,
+        description: info.description,
+        startDate: info.startDate,
+        endDate: info.endDate,
+      };
+
+      formData.append("data", JSON.stringify(json));
+
+      if (info.imageFile) {
+        formData.append("image", info.imageFile);
+      }
+    
+      if (info.videoFile) {
+        formData.append("video", info.videoFile);
+      }
+
+      await instance.post(`${path}`, formData)
     },
     onError: (error) => {
+      const axiosError = error as any;
+      const message = axiosError.response?.data?.message ?? "알 수 없는 오류가 발생했습니다.";
+      alert(message);
       handleError(error);
     }
   })
@@ -81,13 +110,40 @@ export const saveProjectDraft = () => {
 
   return useMutation({
     mutationFn: async (info: InfoData) => {
-      await instance.post(`${path}/storage`, info)
+      const formData = new FormData();
+
+      const json = {
+        projectId: info.projectId,
+        contestId: info.contestId,
+        projectName: info.projectName,
+        authorCategory: info.authorCategory,
+        teamName: info.teamName,
+        skills: info.skills,
+        members: info.members,
+        introduction: info.introduction,
+        description: info.description,
+        startDate: info.startDate,
+        endDate: info.endDate,
+      };
+
+      formData.append("data", JSON.stringify(json));
+
+      if (info.imageFile) {
+        formData.append("image", info.imageFile);
+      }
+
+      if (info.videoFile) {
+        formData.append("video", info.videoFile);
+      }
+
+      await instance.post(`${path}/storage`, formData);
     },
     onError: (error) => {
       handleError(error);
     }
-  })
+  });
 }
+
 
 export const getSaveProjectDraft = (projectId: number) => {
   const { handleError } = ApiError()

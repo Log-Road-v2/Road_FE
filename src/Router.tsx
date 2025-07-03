@@ -12,6 +12,7 @@ import { Info } from "./pages/Auth/Signup/Info";
 import { PasswordChange } from "./pages/Auth/PasswordChange";
 import { LoginPage } from "./pages/Auth/Login";
 import { RankingPage } from "./pages/Ranking";
+import Preview from "./pages/Write/Preview";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/write" element={<Write />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/ranking" element={<RankingPage />} />
+          <Route path="/project/:projectId" element={<Preview />} />
         </Route>
         <Route path="/signup/role" element={<Role />} />
         <Route path="/signup/studentnumber" element={<Studentnumber />} />

@@ -5,10 +5,20 @@ import Details from "./Details"
 import Preview from "./Preview";
 import WriteImage from "../../assets"
 import SubmitButton from "../../components/Common/Button/SubmitButton";
+import { useWriteStore } from "../../stores/useWriteStore";
+import { createProject, saveProjectDraft } from "../../apis/project";
+import { useNavigate } from "react-router-dom";
 
 const Write = () => {
+  const navigate = useNavigate()
   const writeTab = ["기본정보", "설명", "미리보기"];
   const [activeTab, setActiveTab] = useState(writeTab[0]);
+
+  const { info, reset } = useWriteStore();
+  const { contestId, authorCategory, projectName, startDate, endDate } = info
+
+  const createMutation = createProject();
+  const saveDraftMutation = saveProjectDraft();
 
   const renderContent = () => {
     switch (activeTab) {
@@ -23,9 +33,26 @@ const Write = () => {
     }
   };
 
-  const handleSaveDraft = () => { }
+  const isUploadDisabled = !contestId || !projectName || !authorCategory || !startDate || !endDate
 
-  const handleUpload = () => { }
+  const handleSaveDraft = () => {
+    try {
+      saveDraftMutation.mutate(info)
+      navigate('/main');
+      reset()
+    } catch (error) {
+      console.log("임시저장 실패")
+    }
+  }
+
+  const handleUpload = () => {
+    createMutation.mutate(info, {
+      onSuccess: () => {
+        navigate('/main');
+        reset();
+      }
+    });
+  };
 
   return (
     <S.Container>
@@ -54,8 +81,13 @@ const Write = () => {
       <S.ContentWrapper>{renderContent()}</S.ContentWrapper>
 
       <S.ButtonWrapper>
-        <SubmitButton text="임시저장" disabled={true} onClick={() => handleSaveDraft} />
-        <SubmitButton text="업로드" onClick={() => handleUpload} />
+        <S.SaveDraftButton onClick={handleSaveDraft}>임시저장</S.SaveDraftButton>
+        <SubmitButton
+          text="업로드"
+          width="172px"
+          disabled={isUploadDisabled}
+          onClick={handleUpload}
+        />
       </S.ButtonWrapper>
 
     </S.Container>

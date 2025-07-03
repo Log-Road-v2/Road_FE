@@ -19,7 +19,9 @@ const initialInfo: InfoData = {
   startDate: '',
   endDate: '',
   image: '',
-  video: ''
+  imageFile: null,
+  video: '',
+  videoFile: null
 };
 
 export const useWriteStore = create<WriteStoreType>((set) => ({

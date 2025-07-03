@@ -21,7 +21,9 @@ export interface InfoData {
   startDate: string;
   endDate: string;
   image: string;
-  video: string;
+  imageFile: File | null;
+  video: string; 
+  videoFile: File | null;
 }
 export interface MemberType {
   studentId: number,

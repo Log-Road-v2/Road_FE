@@ -6,11 +6,15 @@ import CalendarInput from "../../components/Common/Calendar/Input";
 import Student from "./Input/Student";
 import Skill from "./Input/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
+import { useOngoingContest } from "../../apis/contest";
+import { Contest } from "../../interface";
+import { useState } from "react";
 
 interface PropsType {
   label: string;
   required?: boolean;
   children: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const dateInputs = [
@@ -18,8 +22,8 @@ const dateInputs = [
   { key: "endDate", label: "종료일을 입력해주세요" },
 ] as const;
 
-const FormSection = ({ label, required = false, children }: PropsType) => (
-  <S.InfoSection>
+const FormSection = ({ label, required = false, children, style }: PropsType) => (
+  <S.InfoSection style={style}>
     <S.TextBox>
       <S.SectionDetailText>{label}</S.SectionDetailText>
       {required && <S.Required>*</S.Required>}
@@ -29,8 +33,16 @@ const FormSection = ({ label, required = false, children }: PropsType) => (
 );
 
 const Information = () => {
-  const options = [1, 2, 3]
   const { info, setInfo } = useWriteStore();
+
+  const { data } = useOngoingContest();
+
+  const [selectedItem, setSelectedItem] = useState<{ id: number; name: string } | undefined>(undefined);
+
+  const options = data?.contests.map((contest: Contest) => ({
+    id: contest.id,
+    name: contest.name,
+  })) || [];
 
   return (
     <S.InformationContainer>
@@ -38,8 +50,11 @@ const Information = () => {
 
       <FormSection label="업로드 대회" required>
         <DropDown
-          val={info.contestId}
-          setVal={(val) => setInfo({ contestId: val })}
+          val={selectedItem}
+          setVal={(item) => {
+            setSelectedItem(item);
+            setInfo({ contestId: Number(item.id) });
+          }}
           describe="대회를 선택해주세요"
           items={options}
         />
@@ -62,15 +77,20 @@ const Information = () => {
         </S.ContentWrapper>
       </FormSection>
 
-      <FormSection label="그룹명">
-        <Input
-          value={info.teamName}
-          placeholder="팀명 또는 동아리명을 입력해주세요"
-          label=""
-          error="팀명을 작성해주세요"
-          onChange={(e) => setInfo({ teamName: e.target.value })}
-        />
-      </FormSection>
+      {info.authorCategory === 'TEAM' && (
+        <FormSection
+          label="그룹명"
+          style={{ transition: 'opacity 1s', opacity: info.authorCategory === 'TEAM' ? 1 : 0 }}
+        >
+          <Input
+            value={info.teamName}
+            placeholder="팀명 또는 동아리명을 입력해주세요"
+            label=""
+            error="팀명을 작성해주세요"
+            onChange={(e) => setInfo({ teamName: e.target.value })}
+          />
+        </FormSection>
+      )}
 
       <FormSection label="제목" required>
         <Input
@@ -95,15 +115,18 @@ const Information = () => {
         </S.ContentWrapper>
       </FormSection>
 
-      <FormSection label="이름" required>
-        <Student />
-      </FormSection>
+      {info.authorCategory === 'TEAM' && (
+        <FormSection label="팀원">
+          <Student />
+        </FormSection>
+        )
+      }
 
-      <FormSection label="기술스택" required>
+      <FormSection label="기술스택">
         <Skill />
       </FormSection>
 
-      <FormSection label="간단한 설명" required>
+      <FormSection label="간단한 설명">
         <TextArea
           value={info.introduction}
           placeholder="간단한 설명을 입력해주세요"
@@ -111,27 +134,29 @@ const Information = () => {
         />
       </FormSection>
 
-      <FormSection label="시연영상" required>
+      <FormSection label="시연영상">
         <Input
-          value={info.video}
+          type="file"
           placeholder="시연영상 링크를 입력해주세요"
-          label=""
-          error=""
-          onChange={(e) => setInfo({ video: e.target.value })}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const videoUrl = URL.createObjectURL(file);
+              setInfo({ video: videoUrl, videoFile: file });
+            }
+          }}
         />
       </FormSection>
 
-      <FormSection label="이미지" required>
+      <FormSection label="이미지">
         <Input
           type="file"
+          placeholder="이미지 링크를 입력해주세요"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
               const imageUrl = URL.createObjectURL(file);
-              setInfo({ image: imageUrl });
-              return () => {
-                URL.revokeObjectURL(imageUrl)
-              }
+              setInfo({ image: imageUrl, imageFile: file });
             }
           }}
         />
