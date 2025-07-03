@@ -4,12 +4,20 @@ import { Color, Font } from "../../../styles";
 import SubmitButton from "../../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../../assets/Png/AuthBackground.png";
 import DropDown from "../../../components/Common/DropDown";
-import { useState } from "react";
+import { useRegisterStore } from "../../../stores/useRegisterStore";
+import { useNavigate } from "react-router-dom";
 
 export const Studentnumber = () => {
-  const [grade, setGrade] = useState<number | undefined>();
-  const [classNum, setClassNum] = useState<number | undefined>();
-  const [studentNum, setStudentNum] = useState<number | undefined>();
+  const navigate = useNavigate();
+  const { grade, classNumber, studentNumber, setField } = useRegisterStore();
+
+  const isValid = grade !== null && classNumber !== null && studentNumber !== null;
+
+  const handleNext = () => {
+    if (!isValid) return;
+    navigate("/signup/info");
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -24,36 +32,39 @@ export const Studentnumber = () => {
         </Top>
         <InputWrapper>
           <DropDown
-            val={grade}
-            setVal={setGrade}
+            val={grade ?? null}
+            setVal={(val) => setField("grade", val)}
             describe="학년을 선택해주세요"
             items={[1, 2, 3]}
             label="학년"
           />
           <DropDown
-            val={classNum}
-            setVal={setClassNum}
+            val={classNumber ?? null}
+            setVal={(val) => setField("classNumber", val)}
             describe="반을 선택해주세요"
             items={[1, 2, 3, 4]}
             label="반"
           />
           <DropDown
-            val={studentNum}
-            setVal={setStudentNum}
+            val={studentNumber ?? null}
+            setVal={(val) => setField("studentNumber", val)}
             describe="번호을 선택해주세요"
             items={Array.from({ length: 16 }, (_, i) => i + 1)}
             label="번호"
           />
         </InputWrapper>
         <InputWrapper>
-          <SubmitButton text="다음" disabled />
-          <Login>로그인 하러가기</Login>
+          <SubmitButton text="다음" disabled={!isValid} onClick={handleNext} />
+          <Login onClick={() => navigate("/login")}>
+            로그인 하러가기
+          </Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />
     </Container>
   );
 };
+
 const Container = styled.div`
   display: flex;
 `;
