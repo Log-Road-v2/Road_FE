@@ -4,7 +4,7 @@ import { Color, Font } from "../../styles";
 export const Container = styled.div`
   width: 100%;
   max-width: 1180px;
-  margin: 100px 0px auto;
+  margin: 100px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,9 +78,9 @@ export const AwardWrapper = styled.div`
 `;
 
 export const ProjectWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px 17px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 15px;
   justify-content: flex-start;
   width: 100%;
 `;
@@ -111,6 +111,5 @@ export const PageButton = styled.button<{ isActive: boolean }>`
   &:focus-visible {
     outline: 2px solid ${Color.blue500};
     outline-offset: 2px;
-
-}
+  }
 `;

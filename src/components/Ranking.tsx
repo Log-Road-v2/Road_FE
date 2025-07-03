@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { AuthorTag } from "./Common/Tag/AuthorTag";
-import { AuthorButton } from "./Common/Button/AuthorButton";
 import { AwardTag } from "./Common/Tag/AwardTag";
 import { Color, Font } from "../styles";
 import ProjectEX from "../assets/Png/ProjectEX.png";
@@ -17,11 +16,11 @@ export const Ranking = () => {
           머시기한 이유로 만들어졌습니다. 텍스트
         </Content>
         <TagWrapper>
-          <AuthorButton isTeam={true} />
+          <AuthorTag isTeam={true} />
           <AwardTag text="adsf" />
         </TagWrapper>
       </TextWrapper>
-      <Image src={ProjectEX} alt="프로젝트 사진 예시"/>
+      <Image src={ProjectEX} alt="프로젝트 사진 예시" />
     </Container>
   );
 };

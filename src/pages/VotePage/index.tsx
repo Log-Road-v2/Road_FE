@@ -47,12 +47,12 @@ export const VotePage = () => {
         <S.AwardList>
           상 목록
           <S.AwardWrapper>
-            <CommonTag />
-            <CommonTag />
-            <CommonTag />
-            <CommonTag />
-            <CommonTag />
-            <CommonTag />
+            <CommonTag text="금상" />
+            <CommonTag text="금상" />
+            <CommonTag text="금상" />
+            <CommonTag text="금상" />
+            <CommonTag text="금상" />
+            <CommonTag text="금상" />
           </S.AwardWrapper>
         </S.AwardList>
       </S.ContestInfo>
