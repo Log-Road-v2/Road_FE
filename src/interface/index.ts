@@ -9,8 +9,8 @@ export interface getUserProject {
 export type AuthorCategory = 'PERSONAL' | 'TEAM';
 
 export interface InfoData {
-  projectId?: number;
-  contestId: number;
+  projectId?: string;
+  contestId: string;
   projectName: string;
   authorCategory: AuthorCategory;
   teamName?: string;
@@ -21,9 +21,9 @@ export interface InfoData {
   startDate: string;
   endDate: string;
   image: string;
-  imageFile: File | null;
   video: string; 
-  videoFile: File | null;
+  imageFile?: File;
+  videoFile?: File;
 }
 export interface MemberType {
   studentId: number,

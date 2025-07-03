@@ -3,8 +3,8 @@ import DropDown from "../../components/Common/DropDown";
 import Input from "../../components/Common/Input";
 import TextArea from "../../components/Common/TextArea";
 import CalendarInput from "../../components/Common/Calendar/Input";
-import Student from "./Input/Student";
-import Skill from "./Input/Skill";
+import Student from "./component/Student";
+import Skill from "./component/Skill";
 import { useWriteStore } from "../../stores/useWriteStore";
 import { useOngoingContest } from "../../apis/contest";
 import { Contest } from "../../interface";
@@ -53,7 +53,7 @@ const Information = () => {
           val={selectedItem}
           setVal={(item) => {
             setSelectedItem(item);
-            setInfo({ contestId: Number(item.id) });
+            setInfo({ contestId: String(item.id) });
           }}
           describe="대회를 선택해주세요"
           items={options}

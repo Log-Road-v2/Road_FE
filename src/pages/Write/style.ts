@@ -133,6 +133,9 @@ export const OverviewSection = styled.div`
 `
 
 export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 24px 0;
   border-top: 1px solid ${Color.gray200};
   border-bottom: 1px solid ${Color.gray200};

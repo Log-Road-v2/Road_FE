@@ -36,13 +36,12 @@ const Write = () => {
   const isUploadDisabled = !contestId || !projectName || !authorCategory || !startDate || !endDate
 
   const handleSaveDraft = () => {
-    try {
-      saveDraftMutation.mutate(info)
-      navigate('/main');
-      reset()
-    } catch (error) {
-      console.log("임시저장 실패")
-    }
+    saveDraftMutation.mutate(info, {
+      onSuccess: () => {
+        navigate('/main');
+        reset();
+      }
+    })
   }
 
   const handleUpload = () => {

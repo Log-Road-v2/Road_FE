@@ -6,6 +6,8 @@ import MarkDownPreview from "./MarkDownPreview"
 import { getProjectDetail } from "../../apis/project";
 import { useParams } from "react-router-dom";
 import { MemberType } from "../../interface";
+import { StateTag } from "./component/StateTag";
+import { ProjectState } from "./component/ProjectState";
 
 interface PropsType {
   title?: string;
@@ -21,37 +23,41 @@ const MetaItem = ({ title, children }: PropsType) => (
 
 const Preview = () => {
   const { info } = useWriteStore();
-  const { projectId } = useParams();
+  const { projectId } = useParams<{ projectId: string }>();
 
-  const projectIdNum = Number(projectId);
-  const isValidId = !isNaN(projectIdNum);
+  const isValidId = !!projectId && !isNaN(Number(projectId));
 
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
 
-  const { data: projectDetail } = getProjectDetail(projectIdNum, {
+  const { data: projectDetail } = getProjectDetail(projectId!, {
     enabled: isValidId
   });
 
   const data = projectDetail ?? info;
 
   useEffect(() => {
+    let imageUrl: string | null = null;
+    let videoUrl: string | null = null;
+
     if (data.image instanceof File) {
-      const imageUrl = URL.createObjectURL(data.image);
+      imageUrl = URL.createObjectURL(data.image);
       setImagePreview(imageUrl);
-      return () => URL.revokeObjectURL(imageUrl);
     } else if (typeof data.image === "string") {
       setImagePreview(data.image);
     }
 
     if (data.video instanceof File) {
-      const videoUrl = URL.createObjectURL(data.video);
+      videoUrl = URL.createObjectURL(data.video);
       setVideoPreview(videoUrl);
-      return () => URL.revokeObjectURL(videoUrl);
     } else if (typeof data.video === "string") {
       setVideoPreview(data.video);
     }
-    console.log("video:", data.video);
+
+    return () => {
+      if (imageUrl) URL.revokeObjectURL(imageUrl);
+      if (videoUrl) URL.revokeObjectURL(videoUrl);
+    };
   }, [data.image, data.video]);
 
   return (
@@ -61,7 +67,9 @@ const Preview = () => {
         <S.OverviewSection>
           <S.TitleWrapper>
             <S.Title>{data.projectName}</S.Title>
+            {projectId && data.isWriter && (<StateTag state={data?.state} />)}
           </S.TitleWrapper>
+          {projectId && data.isWriter && (<ProjectState state={data.state} feedback={data?.feedback} />)}
           <S.ProjectInfo>
             {data.introduction}
           </S.ProjectInfo>
@@ -112,7 +120,7 @@ const Preview = () => {
           </S.VideoSection>
         )}
       </S.InformationContainer>
-    </S.PreviewContainer>
+    </S.PreviewContainer >
   );
 };
 
