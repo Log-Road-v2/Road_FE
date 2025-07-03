@@ -43,19 +43,37 @@ export const Description = styled.p`
 
 export const Content = styled.div``
 
-export const ProjectWrapper = styled.div``
+export const ProjectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`
 
 export const SearchWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 0;
+  padding: 12px 0;
   border-top: 2px solid ${Color.gray500};
   border-bottom: 1px solid ${Color.gray300};
 `
 
 export const SearchTotal = styled.p``
 
-export const ProjectCardList = styled.div``
+export const ProjectCardList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+`;
 
 export const ProjectCard = styled.div``
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+`;
