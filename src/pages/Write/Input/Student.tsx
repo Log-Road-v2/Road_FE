@@ -5,50 +5,42 @@ import { User, Add } from "../../../assets"
 import ClosableTag from "../../../components/Common/Tag/ClosableTag";
 import { useState } from "react"
 import { useWriteStore } from "../../../stores/useWriteStore";
+import { getSearchStudent } from "../../../apis/project";
 
 interface StudentInfo {
-  studentId: string;
-  name: string;
+  studentId: number,
+  name: string,
+  grade: number,
+  classNumber: number,
+  studentNumber: number
 }
-
-const dummyStudents: StudentInfo[] = [
-  { studentId: "3114", name: "임다영" },
-  { studentId: "3115", name: "홍서은" },
-  { studentId: "3106", name: "박예빈" },
-];
 
 const Student = () => {
   const { info, setInfo } = useWriteStore();
+
   const [inputValue, setInputValue] = useState("");
-  const [searchResults, setSearchResults] = useState<StudentInfo[]>([]);
   const [selectedStudents, setSelectedStudents] = useState<StudentInfo[]>([]);
+
+  const { data } = getSearchStudent(inputValue);
+  const searchResults: StudentInfo[] = data?.students ?? [];
 
   const updateMembers = (students: StudentInfo[]) => {
     setInfo({
       ...info,
-      members: students.map(({ studentId }) => ({
+      members: students.map(({ studentId, name }) => ({
         studentId: Number(studentId),
+        name,
       })),
     });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    setInputValue(value);
-
-    if (value === "") {
-      setSearchResults([]);
-      return;
-    }
-
-    const filtered = dummyStudents.filter(
-      ({ name, studentId }) =>
-        (name.includes(value) || studentId.includes(value)) &&
-        !selectedStudents.some((s) => s.studentId === studentId)
-    );
-
-    setSearchResults(filtered);
+    setInputValue(e.target.value.trim());
   };
+
+  const filteredResults = searchResults.filter(
+    (student: StudentInfo) => !selectedStudents.some(s => s.studentId === student.studentId)
+  );
 
   const handleAddStudent = (student: StudentInfo) => {
     if (selectedStudents.some((s) => s.studentId === student.studentId)) return;
@@ -58,10 +50,9 @@ const Student = () => {
     updateMembers(updated);
 
     setInputValue("");
-    setSearchResults([]);
   };
 
-  const handleRemoveStudent = (studentId: string) => {
+  const handleRemoveStudent = (studentId: number) => {
     const updated = selectedStudents.filter((s) => s.studentId !== studentId);
     setSelectedStudents(updated);
     updateMembers(updated);
@@ -88,9 +79,9 @@ const Student = () => {
         ))}
       </S.TagWrapper>
 
-      {searchResults.length > 0 && (
+      {filteredResults.length > 0 && (
         <S.SearchResult>
-          {searchResults.map((student) => (
+          {filteredResults.map((student) => (
             <StudentResultItem
               key={student.studentId}
               student={student}
@@ -114,7 +105,7 @@ const StudentResultItem = ({ student, onClick }: StudentResultItemProps) => (
       <User size={20} color={Color.gray500} />
       <S.NameId>
         <S.Name>{student.name}</S.Name>
-        <S.StudentId>{student.studentId}</S.StudentId>
+        <S.StudentId>{student.grade}{student.classNumber}{student.studentNumber}</S.StudentId>
       </S.NameId>
     </S.UserInfo>
     <Add />
