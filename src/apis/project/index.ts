@@ -23,7 +23,7 @@ export const getAchieve = (contestId: string, offset: number) => {
   })
 }
 
-export const getProjectDetail = (projectId : number, options?: { enabled?: boolean }) => {
+export const getProjectDetail = (projectId : string, options?: { enabled?: boolean }) => {
   const { handleError } = ApiError();
 
   return useQuery({
@@ -71,13 +71,13 @@ export const createProject = () => {
       const formData = new FormData();
 
       const json = {
-        projectId: info.projectId,
+        projectId: info.projectId ?? null,
         contestId: info.contestId,
         projectName: info.projectName,
         authorCategory: info.authorCategory,
-        teamName: info.teamName,
-        skills: info.skills,
-        members: info.members,
+        teamName: info.teamName || null,
+        skills: JSON.stringify(info.skills),
+        members: JSON.stringify(info.members),
         introduction: info.introduction,
         description: info.description,
         startDate: info.startDate,
@@ -94,12 +94,13 @@ export const createProject = () => {
         formData.append("video", info.videoFile);
       }
 
-      await instance.post(`${path}`, formData)
+      await instance.post(`${path}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
     },
     onError: (error) => {
-      const axiosError = error as any;
-      const message = axiosError.response?.data?.message ?? "알 수 없는 오류가 발생했습니다.";
-      alert(message);
       handleError(error);
     }
   })
@@ -113,13 +114,13 @@ export const saveProjectDraft = () => {
       const formData = new FormData();
 
       const json = {
-        projectId: info.projectId,
+        projectId: info.projectId ?? null,
         contestId: info.contestId,
         projectName: info.projectName,
         authorCategory: info.authorCategory,
-        teamName: info.teamName,
-        skills: info.skills,
-        members: info.members,
+        teamName: info.teamName || null,
+        skills: JSON.stringify(info.skills),
+        members: JSON.stringify(info.members),
         introduction: info.introduction,
         description: info.description,
         startDate: info.startDate,
@@ -136,7 +137,11 @@ export const saveProjectDraft = () => {
         formData.append("video", info.videoFile);
       }
 
-      await instance.post(`${path}/storage`, formData);
+      await instance.post(`${path}/storage`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     },
     onError: (error) => {
       handleError(error);
