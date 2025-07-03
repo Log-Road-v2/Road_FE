@@ -6,12 +6,18 @@ import AuthBackground from "../../assets/Png/AuthBackground.png";
 import Input from "../../components/Common/Input";
 import { useState } from "react";
 import ApproveButton from "../../components/Common/Button/ApproveButton";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../apis/auth";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  const { mutate: login, isPending } = useLogin();
 
   const handleChange =
     (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +26,18 @@ export const LoginPage = () => {
         [key]: e.target.value,
       }));
     };
+
+  const handleLogin = () => {
+    if (!form.email || !form.password) return;
+    login(form, {
+      onSuccess: () => {
+        navigate("/main");
+      },
+    });
+  };
+
+  const isFormValid = form.email !== "" && form.password !== "";
+
   return (
     <Container>
       <Wrapper>
@@ -45,10 +63,10 @@ export const LoginPage = () => {
         </InputWrapper>
         <InputWrapper>
           <ButtonWrapper>
-            <SubmitButton text="로그인" disabled />
-            <ApproveButton text="회원가입 하러가기" />
+            <SubmitButton text="로그인" disabled={!isFormValid || isPending} onClick={handleLogin} />
+            <ApproveButton text="회원가입 하러가기" onClick={() => navigate('/signup/role')} />
           </ButtonWrapper>
-          <Login>아이디 찾기 | 비밀번호 찾기</Login>
+          <Login onClick={() => navigate('/passwordchange')}>비밀번호 찾기</Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />
