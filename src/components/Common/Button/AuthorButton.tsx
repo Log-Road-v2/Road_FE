@@ -1,8 +1,17 @@
 import styled from "@emotion/styled";
 import { Color, Font } from "../../../styles";
 
-export const AuthorButton = ({ isStudent }: { isStudent: boolean }) => {
-  return <Container>{isStudent ? "학생" : "선생님"}</Container>;
+interface AuthorButtonProps {
+  isStudent: boolean;
+  onClick?: () => void;
+}
+
+export const AuthorButton = ({ isStudent, onClick }: AuthorButtonProps) => {
+  return (
+    <Container onClick={onClick}>
+      {isStudent ? "학생" : "선생님"}
+    </Container>
+  )
 };
 
 const Container = styled.button`
