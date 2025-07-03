@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Font, Color } from "../../../styles";
+import { useSendVerificationCode } from "../../../apis/auth";
 
 interface PropsType {
   value?: string;
@@ -19,6 +20,13 @@ const EmailInput = ({
   onKeyDown,
   ...props
 }: PropsType) => {
+  const { mutate: sendCode } = useSendVerificationCode();
+
+  const handleSendCode = () => {
+    if (!value) return;
+    sendCode(value);
+  };
+
   return (
     <InputContainer>
       {label && <Label>{label}</Label>}
@@ -31,7 +39,7 @@ const EmailInput = ({
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
-        <SendText>인증번호 전송</SendText>
+        <SendText onClick={handleSendCode}>인증번호 전송</SendText>
       </InputFieldWrapper>
     </InputContainer>
   );
