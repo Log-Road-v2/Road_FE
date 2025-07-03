@@ -94,7 +94,7 @@ const MyPage = () => {
         <S.ProjectWrapper>
           <S.SearchWrapper>
             <S.SearchTotal>전체 {selectedProjects.projects.length}건</S.SearchTotal>
-            {selectedTabId === 2 ? renderStateTags() : null}
+            {/* {selectedTabId === 2 ? renderStateTags() : null} */}
           </S.SearchWrapper>
 
           <S.ProjectCardList>
