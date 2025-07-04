@@ -55,7 +55,7 @@ export const Studentnumber = () => {
         </InputWrapper>
         <InputWrapper>
           <SubmitButton text="다음" disabled={!isValid} onClick={handleNext} />
-          <Login onClick={() => navigate("/login")}>
+          <Login onClick={() => navigate("/")}>
             로그인 하러가기
           </Login>
         </InputWrapper>

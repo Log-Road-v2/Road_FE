@@ -49,7 +49,7 @@ export const Role = () => {
             disabled={isStudent === null}
             onClick={handleSubmit}
           />
-          <Login onClick={() => navigate("/login")}>로그인 하러가기</Login>
+          <Login onClick={() => navigate("/")}>로그인 하러가기</Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />

@@ -49,7 +49,7 @@ instance.interceptors.response.use(
             setToken(data.access_token, data.refresh_token)
           })
           .catch(() => {
-            window.location.href = "/login";
+            window.location.href = "/";
           })
         } catch(refreshError) {
           return Promise.reject(refreshError)

@@ -34,7 +34,7 @@ export const Info = () => {
     if (!isValid) return;
 
     signUp(undefined, {
-      onSuccess: () => { navigate("/login") },
+      onSuccess: () => { navigate("/") },
       onError: () => console.log("회원가입에 실패했습니다.")
     })
   };
@@ -89,7 +89,7 @@ export const Info = () => {
         </InputWrapper>
         <InputWrapper>
           <SubmitButton text="회원가입" disabled={!isValid} onClick={handleSubmit} />
-          <Login onClick={() => navigate('/login')}>로그인 하러가기</Login>
+          <Login onClick={() => navigate('/')}>로그인 하러가기</Login>
         </InputWrapper>
       </Wrapper>
       <Image src={AuthBackground} />

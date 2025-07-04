@@ -19,7 +19,7 @@ const LoginNav = () => {
       ) : (
         <RoundButton
           text="로그인"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/")}
         />
       )}
     </NavWrapper>

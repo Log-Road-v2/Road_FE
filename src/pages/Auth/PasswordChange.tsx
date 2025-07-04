@@ -3,7 +3,7 @@ import { Logo } from "../../assets";
 import { Color, Font } from "../../styles";
 import SubmitButton from "../../components/Common/Button/SubmitButton";
 import AuthBackground from "../../assets/Png/AuthBackground.png";
-import EmailInput from "../../components/Common/Input/emailInput";
+import EmailInput from "../../components/Common/Input/EmailInput";
 import { useState } from "react";
 import Input from "../../components/Common/Input";
 

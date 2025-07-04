@@ -32,7 +32,7 @@ function Router() {
         <Route path="/signup/studentnumber" element={<Studentnumber />} />
         <Route path="/signup/info" element={<Info />} />
         <Route path="/passwordchange" element={<PasswordChange />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
