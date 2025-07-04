@@ -4,7 +4,7 @@ import { Arrow } from "../../../assets";
 import { useState } from "react";
 
 interface Contest {
-  id: number;
+  id: string;
   name: string;
   startDate: string;
   endDate: string;
@@ -12,7 +12,7 @@ interface Contest {
 
 interface Props {
   contests: Contest[];
-  selectedId: number | null;
+  selectedId: string | null;
   onSelect: (contest: Contest) => void;
 }
 
