@@ -3,11 +3,18 @@ import { AuthorTag } from "./Common/Tag/AuthorTag";
 import { VoteButton } from "./Common/Button/VoteButton";
 import { Color, Font } from "../styles";
 import { ProjectCheck } from "../assets/ProjectCheck";
-import { getUserProject } from "../interface";
 import { Bookmark } from "../assets";
 import { useState } from "react";
-import { toggleBookmark } from "../apis/project"
+import { toggleBookmark } from "../apis/project";
 import { useNavigate } from "react-router-dom";
+import { getUserProject } from "../interface";
+
+interface ProjectProps extends getUserProject {
+  isVoted?: boolean;
+  initialBookmarked?: boolean;
+  isSelected: boolean;
+  onSelect: () => void;
+}
 
 export const Project = ({
   id,
@@ -17,47 +24,42 @@ export const Project = ({
   image,
   isVoted = true,
   initialBookmarked = false,
-}: getUserProject & { isVoted?: boolean, initialBookmarked?: boolean }) => {
+  isSelected,
+  onSelect
+}: ProjectProps) => {
   const navigate = useNavigate();
-  const projectId = Number(id)
-
   const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
-  const mutation = toggleBookmark(projectId);
+  const mutation = toggleBookmark(Number(id));
 
-  const handleCardClick = () => {
-    navigate(`/project/${projectId}`);
-  };
-
-  const handleBookmarkClick = (event: React.MouseEvent) => {
-    event.stopPropagation();
+  const handleCardClick = () => navigate(`/project/${id}`);
+  const handleBookmarkClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     mutation.mutate(undefined, {
-      onSuccess: () => {
-        setIsBookmarked((prev) => !prev);
-      },
+      onSuccess: () => setIsBookmarked((prev) => !prev),
     });
   };
 
   return (
     <Container isVoted={isVoted} onClick={handleCardClick}>
       {isVoted && (
-        <BlackBox>
+        <CornerMark>
           <ProjectCheck />
-        </BlackBox>
+        </CornerMark>
       )}
-      <Image src={image} />
-      <Wrapper>
-        <TitleWrap>
+      <Thumbnail src={image} alt="project thumbnail" />
+      <ContentWrapper>
+        <Header>
           <Title>{projectName}</Title>
           <BookmarkWrapper onClick={handleBookmarkClick}>
             <Bookmark color={isBookmarked ? Color.blue500 : Color.gray200} />
           </BookmarkWrapper>
-        </TitleWrap>
-        <Content>{introduction}</Content>
-        <ButtonWrapper>
+        </Header>
+        <Intro>{introduction}</Intro>
+        <Footer>
           <AuthorTag isTeam={authorCategory === "TEAM"} />
           {isVoted && <VoteButton isVote={false} isDisabled={false} />}
-        </ButtonWrapper>
-      </Wrapper>
+        </Footer>
+      </ContentWrapper>
     </Container>
   );
 };
@@ -72,17 +74,7 @@ const Container = styled.div<{ isVoted: boolean }>`
   cursor: pointer;
 `;
 
-const TitleWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const BookmarkWrapper = styled.div`
-  cursor: pointer;
-`;
-
-const BlackBox = styled.div`
+const CornerMark = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,22 +87,26 @@ const BlackBox = styled.div`
   border-top-left-radius: 18px;
 `;
 
-const Image = styled.img`
-  width: 280px;
+const Thumbnail = styled.img`
+  width: 100%;
   height: 180px;
+  object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 `;
 
-const Wrapper = styled.div`
-  width: 280px;
-  height: 129px;
+const ContentWrapper = styled.div`
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding: 16px;
+  height: 129px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Title = styled.p`
@@ -118,12 +114,17 @@ const Title = styled.p`
   color: ${Color.black};
 `;
 
-const Content = styled.p`
-  ${Font.medium12};
-  color: ${Color.gray300};
+const BookmarkWrapper = styled.div`
+  cursor: pointer;
 `;
 
-const ButtonWrapper = styled.div`
+const Intro = styled.p`
+  ${Font.medium12};
+  color: ${Color.gray300};
+  margin-top: 4px;
+`;
+
+const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
