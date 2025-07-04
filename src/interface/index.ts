@@ -1,5 +1,5 @@
 export interface getUserProject {
-  id: number,
+  id: string,
   projectName: string,
   introduction: string,
   authorCategory: AuthorCategory,
@@ -31,8 +31,46 @@ export interface MemberType {
 }
 
 export interface Contest {
-  id: number,
+  id: string,
   name: string,
   startDate: string,
   endDate: string
+}
+
+export interface Award {
+  name: string;
+}
+
+export interface Project {
+  id: string;
+  projectName: string;
+  authorCategory: AuthorCategory;
+  introduction: string;
+  image: string;
+}
+
+export interface VotedProjectsResponse {
+  contestId: string;
+  name: string;
+  awards: Award[];
+  projects: Project[];
+}
+
+export interface VotedProject {
+  id: number;
+  projectId: string;
+  rank: number;
+}
+
+export interface MyVotedProjectsResponse {
+  project: VotedProject[];
+}
+
+export interface VoteData {
+  votes: Vote[]
+}
+
+export interface Vote {
+  projectId: string;
+  rank: number;
 }
