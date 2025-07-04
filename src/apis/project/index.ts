@@ -65,7 +65,6 @@ export const getSearchProject = (keyword: string, offset: number) => {
 }
 
 export const createProject = () => {
-  const { handleError } = ApiError();
 
   return useMutation({
     mutationFn: async (info: InfoData) => {
