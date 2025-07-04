@@ -9,7 +9,7 @@ import { Project } from "../../components/Project"
 import { getAchieve, getSearchProject } from "../../apis/project"
 
 interface Contest {
-  id: number;
+  id: string;
   name: string;
   startDate: string;
   endDate: string;
