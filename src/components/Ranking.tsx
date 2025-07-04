@@ -2,25 +2,32 @@ import styled from "@emotion/styled";
 import { AuthorTag } from "./Common/Tag/AuthorTag";
 import { AwardTag } from "./Common/Tag/AwardTag";
 import { Color, Font } from "../styles";
-import ProjectEX from "../assets/Png/ProjectEX.png";
+import { AuthorCategory } from "../interface";
 
-export const Ranking = () => {
+interface RankProps {
+  rankNum: number,
+  projectName: string,
+  authCategory: AuthorCategory,
+  introduction: string,
+  image: string,
+  award: string
+}
+
+export const Ranking = ({ rankNum, projectName, authCategory, introduction, image, award }: RankProps) => {
   return (
     <Container>
-      <RankNum>1</RankNum>
+      <RankNum>{rankNum}</RankNum>
       <TextWrapper>
-        <Title>프로젝트명</Title>
+        <Title>{projectName}</Title>
         <Content>
-          대회 머시기한 이유로 만들어졌습니다. 대회 머시기한 이유로
-          만들어졌습니다. 텍스트 대회 머시기한 이유로 만들어졌습니다. 대회
-          머시기한 이유로 만들어졌습니다. 텍스트
+          {introduction}
         </Content>
         <TagWrapper>
-          <AuthorTag isTeam={true} />
-          <AwardTag text="adsf" />
+          <AuthorTag isTeam={authCategory === "TEAM"} />
+          <AwardTag text={award} />
         </TagWrapper>
       </TextWrapper>
-      <Image src={ProjectEX} alt="프로젝트 사진 예시" />
+      <Image src={image} alt="프로젝트 사진 예시" />
     </Container>
   );
 };

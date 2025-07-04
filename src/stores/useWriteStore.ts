@@ -1,5 +1,6 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 import { InfoData } from '../interface';
+import { persist } from 'zustand/middleware';
 
 interface WriteStoreType {
   info: InfoData;
@@ -8,7 +9,7 @@ interface WriteStoreType {
 }
 
 const initialInfo: InfoData = {
-  contestId: 0,
+  contestId: '',
   projectName: '',
   authorCategory: 'PERSONAL',
   teamName: '',
@@ -19,21 +20,27 @@ const initialInfo: InfoData = {
   startDate: '',
   endDate: '',
   image: '',
-  imageFile: null,
+  imageFile: undefined,
   video: '',
-  videoFile: null
+  videoFile: undefined,
 };
 
-export const useWriteStore = create<WriteStoreType>((set) => ({
-  info: initialInfo,
-
-  setInfo: (data) =>
-    set((state) => ({
-      info: {
-        ...state.info,
-        ...data,
-      },
-    })),
-
-  reset: () => set({ info: initialInfo }),
-}));
+export const useWriteStore = create<WriteStoreType>()(
+  persist(
+    (set) => ({
+      info: initialInfo,
+      setInfo: (partial) => set((state) => ({ info: { ...state.info, ...partial } })),
+      reset: () => set({ info: initialInfo }),
+    }),
+    {
+      name: 'write-storage',
+      partialize: (state) => ({
+        info: {
+          ...state.info,
+          videoFile: undefined,
+          imageFile: undefined,
+        },
+      }),
+    }
+  )
+);

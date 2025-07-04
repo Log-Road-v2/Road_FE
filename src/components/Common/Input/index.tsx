@@ -11,6 +11,7 @@ interface PropsType {
   error?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 const Input = ({
@@ -22,12 +23,13 @@ const Input = ({
   error = "에러가 발생하였습니다",
   onChange,
   onKeyDown,
+  onClick,
   ...props
 }: PropsType) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   return (
-    <InputContainer width={width}>
+    <InputContainer width={width} onClick={onClick}>
       {label && <Label>{label}</Label>}
       <InputBox
         isError={isError}

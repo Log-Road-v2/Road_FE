@@ -2,6 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import instance from "../axios";
 import ApiError from "../axios/ApiError";
 import { InfoData } from "../../interface";
+import toast from "react-hot-toast";
 
 const path = '/project'
 
@@ -64,7 +65,6 @@ export const getSearchProject = (keyword: string, offset: number) => {
 }
 
 export const createProject = () => {
-  const { handleError } = ApiError();
 
   return useMutation({
     mutationFn: async (info: InfoData) => {
@@ -100,8 +100,13 @@ export const createProject = () => {
         },
       })
     },
-    onError: (error) => {
-      handleError(error);
+    onSuccess: () => {
+      toast.success("프로젝트가 성공적으로 등록되었습니다!")
+    },
+    onError: (error: any) => {
+      const errorMessage =
+      error?.response?.data?.message || error?.message || '알 수 없는 오류가 발생했습니다';
+    alert(errorMessage);
     }
   })
 }
@@ -143,6 +148,9 @@ export const saveProjectDraft = () => {
         },
       });
     },
+    onSuccess: () => {
+      toast.success("프로젝트가 성공적으로 저장되었습니다!")
+    },
     onError: (error) => {
       handleError(error);
     }
@@ -167,12 +175,32 @@ export const getSaveProjectDraft = (projectId: number) => {
   })
 }
 
-export const modifyProject = (projectId : number) => {
+export const loadSavedData = (projectId: string) => {
+  const { handleError } = ApiError();
+
+  return useQuery({
+    queryKey: ["SavedProject", projectId],
+    queryFn: async () => {
+      try {
+        const { data } = await instance.get(`${path}/storage/${projectId}`);
+        return data
+      } catch (error) {
+        handleError(error);
+        throw error; 
+      }
+    }
+  })
+}
+
+export const modifyProject = (projectId : string) => {
   const { handleError } = ApiError();
 
   return useMutation({
     mutationFn: async () => {
       await instance.patch(`${path}/${projectId}`);
+    },
+    onSuccess: () => {
+      toast.success("프로젝트가 성공적으로 수정되었습니다!")
     },
     onError: (error) => {
       handleError(error);
