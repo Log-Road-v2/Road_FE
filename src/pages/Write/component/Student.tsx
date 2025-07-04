@@ -3,9 +3,10 @@ import Input from "../../../components/Common/Input";
 import { Color } from "../../../styles";
 import { User, Add } from "../../../assets"
 import ClosableTag from "../../../components/Common/Tag/ClosableTag";
-import { useState } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { useWriteStore } from "../../../stores/useWriteStore";
 import { getSearchStudent } from "../../../apis/project";
+import debounce from 'lodash.debounce';
 
 interface StudentInfo {
   studentId: number,
@@ -18,10 +19,62 @@ interface StudentInfo {
 const Student = () => {
   const { info, setInfo } = useWriteStore();
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const [inputValue, setInputValue] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
   const [selectedStudents, setSelectedStudents] = useState<StudentInfo[]>([]);
 
-  const { data } = getSearchStudent(inputValue);
+  const debouncedSetKeyword = useMemo(
+    () => debounce((value: string) => setSearchKeyword(value), 300),
+    []
+  );
+
+  const initializeSelectedStudents = () => {
+    if (info.members && info.members.length > 0) {
+      const initialStudents: StudentInfo[] = info.members.map((member) => ({
+        studentId: member.studentId,
+        name: member.name ?? "",
+        grade: 0,
+        classNumber: 0,
+        studentNumber: 0,
+      }));
+      setSelectedStudents(initialStudents);
+    }
+  };
+
+  useEffect(() => {
+    initializeSelectedStudents();
+  }, []);
+
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.trim();
+    setInputValue(value);
+    debouncedSetKeyword(value);
+  };
+
+  const hideSearchResults = () => {
+    setSearchKeyword("");
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        hideSearchResults();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      debouncedSetKeyword.cancel();
+    };
+  }, [debouncedSetKeyword]);
+
+
+  const { data } = getSearchStudent(searchKeyword);
   const searchResults: StudentInfo[] = data?.students ?? [];
 
   const updateMembers = (students: StudentInfo[]) => {
@@ -32,10 +85,6 @@ const Student = () => {
         name,
       })),
     });
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value.trim());
   };
 
   const filteredResults = searchResults.filter(
@@ -59,38 +108,41 @@ const Student = () => {
   };
 
   return (
-    <S.Container>
-      <Input
-        width="100%"
-        value={inputValue}
-        placeholder="학번이나 이름을 입력해주세요"
-        label=""
-        error=""
-        onChange={handleInputChange}
-      />
+    <div style={{ flex: 1 }}>
+      <S.Container ref={containerRef}>
+        <Input
+          width="100%"
+          value={inputValue}
+          placeholder="학번이나 이름을 입력해주세요"
+          label=""
+          error=""
+          onChange={handleInputChange}
+          onClick={e => e.stopPropagation()}
+        />
 
-      <S.TagWrapper>
-        {selectedStudents.map(student => (
-          <ClosableTag
-            key={student.studentId}
-            text={student.name}
-            onClose={() => handleRemoveStudent(student.studentId)}
-          />
-        ))}
-      </S.TagWrapper>
-
-      {filteredResults.length > 0 && (
-        <S.SearchResult>
-          {filteredResults.map((student) => (
-            <StudentResultItem
+        <S.TagWrapper>
+          {selectedStudents.map(student => (
+            <ClosableTag
               key={student.studentId}
-              student={student}
-              onClick={() => handleAddStudent(student)}
+              text={student.name}
+              onClose={() => handleRemoveStudent(student.studentId)}
             />
           ))}
-        </S.SearchResult>
-      )}
-    </S.Container>
+        </S.TagWrapper>
+
+        {filteredResults.length > 0 && (
+          <S.SearchResult onClick={e => e.stopPropagation()}>
+            {filteredResults.map((student) => (
+              <StudentResultItem
+                key={student.studentId}
+                student={student}
+                onClick={() => handleAddStudent(student)}
+              />
+            ))}
+          </S.SearchResult>
+        )}
+      </S.Container>
+    </div>
   )
 }
 
@@ -99,17 +151,22 @@ interface StudentResultItemProps {
   onClick: () => void;
 }
 
-const StudentResultItem = ({ student, onClick }: StudentResultItemProps) => (
-  <S.StudentItem onClick={onClick}>
-    <S.UserInfo>
-      <User size={20} color={Color.gray500} />
-      <S.NameId>
-        <S.Name>{student.name}</S.Name>
-        <S.StudentId>{student.grade}{student.classNumber}{student.studentNumber}</S.StudentId>
-      </S.NameId>
-    </S.UserInfo>
-    <Add />
-  </S.StudentItem>
-);
+const StudentResultItem = ({ student, onClick }: StudentResultItemProps) => {
+  const formattedStudentNumber = String(student.studentNumber).padStart(2, '0');
+  const studentId = `${student.grade}${student.classNumber}${formattedStudentNumber}`;
+
+  return (
+    <S.StudentItem onClick={onClick}>
+      <S.UserInfo>
+        <User size={20} color={Color.gray500} />
+        <S.NameId>
+          <S.Name>{student.name}</S.Name>
+          <S.StudentId>{studentId}</S.StudentId>
+        </S.NameId>
+      </S.UserInfo>
+      <Add />
+    </S.StudentItem>
+  )
+};
 
 export default Student
