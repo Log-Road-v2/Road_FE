@@ -37,12 +37,15 @@ const Information = () => {
 
   const { data } = useOngoingContest();
 
-  const [selectedItem, setSelectedItem] = useState<{ id: number; name: string } | undefined>(undefined);
+  const [videoFileName, setVideoFileName] = useState("");
+  const [imageFileName, setImageFileName] = useState("");
 
   const options = data?.contests.map((contest: Contest) => ({
     id: contest.id,
     name: contest.name,
   })) || [];
+
+  const selectedContest = options.find((item: any) => String(item.id) === info.contestId);
 
   return (
     <S.InformationContainer>
@@ -50,9 +53,8 @@ const Information = () => {
 
       <FormSection label="업로드 대회" required>
         <DropDown
-          val={selectedItem}
+          val={selectedContest}
           setVal={(item) => {
-            setSelectedItem(item);
             setInfo({ contestId: String(item.id) });
           }}
           describe="대회를 선택해주세요"
@@ -119,7 +121,7 @@ const Information = () => {
         <FormSection label="팀원">
           <Student />
         </FormSection>
-        )
+      )
       }
 
       <FormSection label="기술스택">
@@ -143,6 +145,7 @@ const Information = () => {
             if (file) {
               const videoUrl = URL.createObjectURL(file);
               setInfo({ video: videoUrl, videoFile: file });
+              setVideoFileName(file.name);
             }
           }}
         />
@@ -150,6 +153,7 @@ const Information = () => {
 
       <FormSection label="이미지">
         <Input
+          value={info.image}
           type="file"
           placeholder="이미지 링크를 입력해주세요"
           onChange={(e) => {
@@ -157,6 +161,7 @@ const Information = () => {
             if (file) {
               const imageUrl = URL.createObjectURL(file);
               setInfo({ image: imageUrl, imageFile: file });
+              setImageFileName(file.name);
             }
           }}
         />

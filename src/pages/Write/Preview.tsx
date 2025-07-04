@@ -1,5 +1,5 @@
 import * as S from "./style";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import SkillTag from "../../components/Common/Tag/CommonTag";
 import { useWriteStore } from "../../stores/useWriteStore";
 import MarkDownPreview from "./MarkDownPreview"
@@ -27,9 +27,6 @@ const Preview = () => {
 
   const isValidId = !!projectId && !isNaN(Number(projectId));
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [videoPreview, setVideoPreview] = useState<string | null>(null);
-
   const { data: projectDetail } = getProjectDetail(projectId!, {
     enabled: isValidId
   });
@@ -37,28 +34,9 @@ const Preview = () => {
   const data = projectDetail ?? info;
 
   useEffect(() => {
-    let imageUrl: string | null = null;
-    let videoUrl: string | null = null;
+    console.log(projectDetail);
+  })
 
-    if (data.image instanceof File) {
-      imageUrl = URL.createObjectURL(data.image);
-      setImagePreview(imageUrl);
-    } else if (typeof data.image === "string") {
-      setImagePreview(data.image);
-    }
-
-    if (data.video instanceof File) {
-      videoUrl = URL.createObjectURL(data.video);
-      setVideoPreview(videoUrl);
-    } else if (typeof data.video === "string") {
-      setVideoPreview(data.video);
-    }
-
-    return () => {
-      if (imageUrl) URL.revokeObjectURL(imageUrl);
-      if (videoUrl) URL.revokeObjectURL(videoUrl);
-    };
-  }, [data.image, data.video]);
 
   return (
     <S.PreviewContainer isPreview={!projectId}>
@@ -74,7 +52,7 @@ const Preview = () => {
             {data.introduction}
           </S.ProjectInfo>
 
-          {imagePreview && <S.PreviewImage src={imagePreview} alt="프로젝트 이미지" />}
+          {data?.image && <S.PreviewImage src={data.image} alt="프로젝트 이미지" />}
         </S.OverviewSection>
 
         <S.MetaInfoSection>
@@ -85,7 +63,7 @@ const Preview = () => {
             </S.TeamList>
           </MetaItem>
 
-          {data?.member && (
+          {data?.member && data?.authorCategory == "TEAM" && (
             <MetaItem title="구성원">
               <S.TeamList>
                 {data?.member?.map((value: MemberType) => (
@@ -114,9 +92,9 @@ const Preview = () => {
 
         <MarkDownPreview markdown={data.description} />
 
-        {videoPreview && (
+        {data?.video && (
           <S.VideoSection as="video" controls>
-            <source src={videoPreview} type="video/mp4" />
+            <source src={data.video} type="video/mp4" />
           </S.VideoSection>
         )}
       </S.InformationContainer>
