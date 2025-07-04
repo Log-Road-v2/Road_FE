@@ -8,13 +8,13 @@ const LoginNav = () => {
   const navigate = useNavigate();
   const { data: userInfo, isLoading, isError } = useGetUserInfo();
 
-  const isLoggedIn = !!userInfo;
+  const isLoggedIn = !!userInfo?.name;
 
   return (
     <NavWrapper>
       {isLoggedIn && !isLoading && !isError ? (
         <UserName onClick={() => navigate("/mypage")}>
-          {userInfo.name}님
+          {userInfo?.name || "사용자"}님
         </UserName>
       ) : (
         <RoundButton
