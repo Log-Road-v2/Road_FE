@@ -19,11 +19,11 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
         <path fill="url(#k)" d="M1.606 21.305v.642c.01.265.229.486.774.486h19.316c.353 0 .702-.17.707-.486v-.642c-.008.315-.355.483-.707.483H2.38c-.544 0-.761-.219-.774-.483Z" />
       </g>
       <g filter="url(#l)">
-        <path stroke="url(#m)" stroke-width=".075" d="M8.213 19.72a.187.187 0 0 1 .184-.15h7.2a.187.187 0 0 1 .183.15l.234 1.137a.186.186 0 0 1-.039.156.187.187 0 0 1-.145.069H8.168a.188.188 0 0 1-.184-.225l.229-1.137Z" />
+        <path stroke="url(#m)" strokeWidth=".075" d="M8.213 19.72a.187.187 0 0 1 .184-.15h7.2a.187.187 0 0 1 .183.15l.234 1.137a.186.186 0 0 1-.039.156.187.187 0 0 1-.145.069H8.168a.188.188 0 0 1-.184-.225l.229-1.137Z" />
       </g>
       <path fill="url(#n)" d="M8.213 19.72a.187.187 0 0 1 .184-.15h7.2a.187.187 0 0 1 .183.15l.234 1.137a.186.186 0 0 1-.039.156.187.187 0 0 1-.145.069H8.168a.188.188 0 0 1-.184-.225l.229-1.137Z" />
       <g filter="url(#o)">
-        <path stroke="url(#p)" stroke-width=".075" d="M3.66 15.936a.3.3 0 0 1 .292-.233h16.121a.3.3 0 0 1 .293.235l.582 2.602c.026.118-.098.23-.333.23H3.4c-.307 0-.367-.125-.34-.242l.6-2.592Z" />
+        <path stroke="url(#p)" strokeWidth=".075" d="M3.66 15.936a.3.3 0 0 1 .292-.233h16.121a.3.3 0 0 1 .293.235l.582 2.602c.026.118-.098.23-.333.23H3.4c-.307 0-.367-.125-.34-.242l.6-2.592Z" />
       </g>
       <g filter="url(#q)">
         <path fill="url(#r)" d="M3.66 15.936a.3.3 0 0 1 .292-.233h16.121a.3.3 0 0 1 .293.235l.582 2.602c.026.118-.098.23-.333.23H3.4c-.307 0-.367-.125-.34-.242l.6-2.592Z" />
@@ -128,8 +128,8 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
         <path fill="#D7D3E6" d="M9.55 17.778a.038.038 0 0 1 .038-.036h4.803a.038.038 0 0 1 .038.036l.02.49a.037.037 0 0 1-.038.04H9.565a.037.037 0 0 1-.035-.024.037.037 0 0 1-.003-.015l.024-.49Z" />
       </g>
       <defs>
-        <filter id="a" width="18.069" height="13.359" x="2.958" y="1.57" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="a" width="18.069" height="13.359" x="2.958" y="1.57" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dx=".05" />
@@ -144,7 +144,7 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
           <feColorMatrix values="0 0 0 0 0.521569 0 0 0 0 0.505882 0 0 0 0 0.764706 0 0 0 1 0" />
           <feBlend in2="effect1_innerShadow_9187_28098" result="effect2_innerShadow_9187_28098" />
         </filter>
-        <filter id="d" width="16.592" height="12.03" x="3.646" y="2.281" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="d" width="16.592" height="12.03" x="3.646" y="2.281" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
           <feFlood flood-opacity="0" result="BackgroundImageFix" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dx="-.05" dy=".05" />
@@ -154,8 +154,8 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
           <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_9187_28098" />
           <feBlend in="SourceGraphic" in2="effect1_dropShadow_9187_28098" result="shape" />
         </filter>
-        <filter id="f" width="20.797" height="6.909" x="1.605" y="14.88" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="f" width="20.797" height="6.909" x="1.605" y="14.88" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dy="-.05" />
@@ -164,8 +164,8 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
           <feColorMatrix values="0 0 0 0 0.756863 0 0 0 0 0.733333 0 0 0 0 0.8 0 0 0 1 0" />
           <feBlend in2="shape" result="effect1_innerShadow_9187_28098" />
         </filter>
-        <filter id="h" width="20.797" height="1.225" x="1.605" y="21.305" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="h" width="20.797" height="1.225" x="1.605" y="21.305" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dy=".1" />
@@ -174,18 +174,18 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
           <feColorMatrix values="0 0 0 0 0.580392 0 0 0 0 0.552941 0 0 0 0 0.611765 0 0 0 1 0" />
           <feBlend in2="shape" result="effect1_innerShadow_9187_28098" />
         </filter>
-        <filter id="l" width="8.263" height="1.736" x="7.866" y="19.456" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+        <filter id="l" width="8.263" height="1.736" x="7.866" y="19.456" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
           <feFlood flood-opacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feGaussianBlur result="effect1_foregroundBlur_9187_28098" stdDeviation=".037" />
         </filter>
-        <filter id="o" width="18.123" height="3.291" x="2.941" y="15.589" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="o" width="18.123" height="3.291" x="2.941" y="15.589" colorInterpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feGaussianBlur result="effect1_foregroundBlur_9187_28098" stdDeviation=".037" />
         </filter>
-        <filter id="q" width="17.895" height="3.112" x="3.055" y="15.653" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="q" width="17.895" height="3.112" x="3.055" y="15.653" colorInterpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dy="-.05" />
@@ -194,8 +194,8 @@ export const LaptopIcon = ({ size = 24, onClick }: IconProps) => {
           <feColorMatrix values="0 0 0 0 0.517647 0 0 0 0 0.498039 0 0 0 0 0.541176 0 0 0 1 0" />
           <feBlend in2="shape" result="effect1_innerShadow_9187_28098" />
         </filter>
-        <filter id="s" width="1.134" height=".747" x="4.049" y="15.923" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="s" width="1.134" height=".747" x="4.049" y="15.923" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
           <feOffset dx="-.05" />
           <feGaussianBlur stdDeviation=".05" />
