@@ -3,6 +3,7 @@ import instance from "../axios";
 import ApiError from "../axios/ApiError";
 import { useRegisterStore } from "../../stores/useRegisterStore";
 import { setToken } from "../function/TokenManager";
+import toast from "react-hot-toast";
 
 const path = '/auth'
 
@@ -54,6 +55,9 @@ export const useSendVerificationCode = () => {
   return useMutation({
     mutationFn: async (email: string) => {
       await instance.post(`${path}/email`, { email });
+    },
+    onSuccess: () => {
+      toast.success("이메일을 보냈습니다!")
     },
     onError: handleError,
   });
